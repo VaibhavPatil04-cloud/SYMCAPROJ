@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Event Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="styles-login.css" />
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-calendar-alt logo-icon"></i>
+            <div class="logo-text">EventHub</div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-calendar-day"></i> Events</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Login Content -->
+    <div class="login-container">
+        <div class="admin-icon">
+            <i class="fas fa-user-shield"></i>
+        </div>
+        <h2>Admin Login</h2>
+        <form class="login-form" action="/login/admin" method="POST">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Admin Username</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login as Admin
+            </button>
+        </form>
+        
+        <div class="security-tips">
+            <h3><i class="fas fa-shield-alt"></i> Security Tips</h3>
+            <ul>
+                <li>Never share your credentials with anyone</li>
+                <li>Ensure you're on the official EventHub domain</li>
+                <li>Log out after each session, especially on shared devices</li>
+                <li>Use a strong, unique password for your admin account</li>
+            </ul>
+        </div>
+        
+        <div class="form-footer">
+            <button onclick="window.location.href='index.html'" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            <p style="margin-top: 20px;">Having trouble? <a href="#"><i class="fas fa-life-ring"></i> Contact Support</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Dummy admin credentials
+            const dummyUsername = 'admin';
+            const dummyPassword = 'admin123';
+
+            if (username === dummyUsername && password === dummyPassword) {
+                // Redirect to admin dashboard
+                window.location.href = 'dashboard-admin.html';
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+   <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>EventHub</h3>
+                    <p>The premier platform for student events and campus activities. Join our community today!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-day"></i> Events</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="login-student.html"><i class="fas fa-sign-in-alt"></i> Student Login</a></li>
+                        <li><a href="login-admin.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        <li><a href="login-institute.html"><i class="fas fa-university"></i> Institute Login</a></li>
+                        <li><a href="register-student.html"><i class="fas fa-user-plus"></i> Register as Student</a></li>
+                        <li><a href="register-institute.html"><i class="fas fa-university"></i> Register as Institute</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 EventHub. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    document.querySelector('.login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Dummy admin credentials
+        const dummyUsername = 'admin';
+        const dummyPassword = 'admin123';
+
+        // Temporary credentials for testing and local use
+        const tempEmail = 'test@example.com';
+        const tempPassword = 'testpass';
+
+        if ((username === dummyUsername && password === dummyPassword) || (username === tempEmail && password === tempPassword)) {
+            // Redirect to admin dashboard
+            window.location.href = 'dashboard-admin.html';
+        } else {
+            alert('Invalid credentials. Please try again.');
+        }
+    });
+</script>
+</html>

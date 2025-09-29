@@ -1,0 +1,903 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.header {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    color: #333333;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #1a1a1a, #333333);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a:hover {
+    color: #666666;
+}
+
+.register-highlight {
+    background: #ffeb3b;
+    color: #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-left: 10px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+}
+
+.hero-content {
+    flex: 1;
+    color: white;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.student-highlight {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+    max-width: 500px;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.cta-buttons h2 {
+    color: #444;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.cta-buttons p {
+    color: #666;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    padding: 18px 30px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #1a1a1a, #333333);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+.btn-secondary {
+    background: #ffffff;
+    color: #444;
+    border: 2px solid #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary::after {
+    content: "Students Only";
+    position: absolute;
+    top: -8px;
+    right: -35px;
+    background: #ff6b6b;
+    color: white;
+    font-size: 0.8rem;
+    padding: 3px 35px;
+    transform: rotate(45deg);
+    width: 150px;
+    text-align: center;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 117, 252, 0.5);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.steps-section {
+    background: white;
+    padding: 80px 20px;
+}
+
+.steps-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.steps-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: #333;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.step {
+    flex: 1;
+    background: #f8f9ff;
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, #1a1a1a, #333333);
+}
+
+.step-number {
+    font-size: 4rem;
+    font-weight: 800;
+    color: rgba(51, 51, 51, 0.1);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 1;
+}
+
+.step-icon {
+    font-size: 3.5rem;
+    margin: 20px 0;
+    color: #333333;
+    z-index: 2;
+}
+
+.step h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #333;
+    z-index: 2;
+}
+
+.step p {
+    color: #666;
+    font-size: 1.1rem;
+    z-index: 2;
+    max-width: 250px;
+}
+
+.step:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.features {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    padding: 100px 20px;
+    color: white;
+}
+
+.features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.feature-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.footer {
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 60px 20px 30px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.footer-column p {
+    color: #ddd;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-column ul li a:hover {
+    color: #ffffff;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.social-icon {
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: #333333;
+    transform: translateY(-5px);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    top: calc(100% + 10px); 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: #444;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap; 
+}
+
+/* Add hover effect for dropdown links */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: #333333;
+}
+
+/* Style the register link itself to indicate it's a dropdown */
+.register-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.register-link .fa-caret-down {
+    transition: transform 0.3s ease;
+}
+
+/* CSS to show the dropdown */
+.show-dropdown {
+    display: block;
+}
+
+
+@media (max-width: 1000px) {
+    .steps {
+        flex-wrap: wrap;
+    }
+    
+    .step {
+        flex: 0 0 calc(50% - 20px);
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-content {
+        margin-bottom: 40px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .steps {
+        flex-direction: column;
+    }
+    
+    .step {
+        flex: 0 0 100%;
+        min-height: auto;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .cta-buttons {
+        padding: 30px 20px;
+    }
+    
+    .btn {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .btn-secondary::after {
+        font-size: 0.7rem;
+        right: -45px;
+        padding: 2px 35px;
+    }
+}
+
+/* Feedback Section */
+.feedback-section {
+    background: white;
+    padding: 80px 20px;
+}
+
+.feedback-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.feedback-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.feedback-section .feedback-container > p {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* Feedback Benefits */
+.feedback-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 30px 20px;
+    background: #f8f9ff;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-card i {
+    font-size: 3rem;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.benefit-card p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Feedback CTA - Centered properly */
+.feedback-cta {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback-toggle-btn {
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback-note {
+    color: #666;
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Feedback Form Container */
+.feedback-form-container {
+    background: #f8f9ff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.form-header {
+    background: linear-gradient(to right, #1a1a1a, #333333);
+    color: white;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px; /* This makes all corners round */
+    margin: 10px 10px 0 10px; /* Add some margin to show the rounded corners */
+}
+
+
+.form-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-form {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s;
+}
+
+.close-form:hover {
+    transform: scale(1.1);
+}
+
+.feedback-form {
+    padding: 40px;
+}
+
+/* Form Groups - Fixed visibility */
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background: white;
+    color: #333;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #333333;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Checkbox and Radio Groups - Fixed visibility */
+.checkbox-group,
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.checkbox-option,
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px 15px;
+    background: white;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.checkbox-option:hover,
+.radio-option:hover {
+    border-color: #333333;
+}
+
+.checkbox-option input,
+.radio-option input {
+    margin: 0;
+}
+
+/* Rating Group - Fixed visibility */
+.rating-group {
+    margin-top: 10px;
+}
+
+.rating-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.rating-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    color: #333;
+}
+
+.rating-option:hover {
+    border-color: #333333;
+    transform: scale(1.1);
+}
+
+.rating-option input {
+    display: none;
+}
+
+.rating-option input:checked + span {
+    background: #333333;
+    color: white;
+    border-color: #333333;
+}
+
+.rating-option span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.rating-labels {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+    padding: 0 10px;
+}
+
+
+/* Submit Button - Centered properly */
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Animation for form appearance */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feedback-form-container.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feedback-benefits {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .benefit-card {
+        padding: 25px 15px;
+    }
+    
+    .feedback-form {
+        padding: 25px 20px;
+    }
+    
+    .form-header {
+        padding: 20px;
+    }
+    
+    .checkbox-group,
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .rating-options {
+        justify-content: space-between;
+    }
+    
+    .rating-option {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .feedback-toggle-btn {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+}

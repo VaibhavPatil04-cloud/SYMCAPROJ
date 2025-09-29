@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - EventHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="register-student.css" />
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-calendar-alt logo-icon"></i>
+            <div class="logo-text">EventHub</div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-calendar-day"></i> Events</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+        </nav>
+    </header>
+
+    <!-- Registration Form -->
+    <div class="registration-container">
+        <div class="student-icon">
+            <i class="fas fa-user-graduate"></i>
+        </div>
+        <h2>Student Registration</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Create your student account to access campus events</p>
+        
+        <form class="registration-form" action="/register" method="POST">
+            <!-- Hidden role field (student only) -->
+            <input type="hidden" name="role" value="student">
+            
+            <div class="form-group full-width">
+                <label for="fullname"><i class="fas fa-user"></i> Full Name</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="fullname" name="fullname" class="form-input" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="username"><i class="fas fa-at"></i> Username</label>
+                <i class="fas fa-at input-icon"></i>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Choose a username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Your university email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Create a password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="confirm-password" name="confirm-password" class="form-input" placeholder="Confirm your password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="student-id"><i class="fas fa-id-card"></i> Student ID</label>
+                <i class="fas fa-id-card input-icon"></i>
+                <input type="text" id="student-id" name="student-id" class="form-input" placeholder="Enter your student ID" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="major"><i class="fas fa-graduation-cap"></i> Major</label>
+                <i class="fas fa-graduation-cap input-icon"></i>
+                <input type="text" id="major" name="major" class="form-input" placeholder="Your field of study" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                <i class="fas fa-phone input-icon"></i>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="Your contact number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="university"><i class="fas fa-university"></i> University</label>
+                <i class="fas fa-university input-icon"></i>
+                <input type="text" id="university" name="university" class="form-input" placeholder="Your university name" required>
+            </div>
+            
+            <div class="terms">
+                <h3><i class="fas fa-file-contract"></i> Terms & Conditions</h3>
+                <p>By creating an account, you agree to our:</p>
+                <ul>
+                    <li>Terms of Service</li>
+                    <li>Privacy Policy</li>
+                    <li>Code of Conduct for campus events</li>
+                </ul>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms" style="font-weight: normal;">I have read and agree to the terms and conditions</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary full-width">
+                <i class="fas fa-user-plus"></i> Create Student Account
+            </button>
+        </form>
+        
+        <div class="form-footer">
+            <button onclick="window.location.href='index.html'" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            <p style="margin-top: 20px;">Already have an account? <a href="login-student.html"><i class="fas fa-sign-in-alt"></i> Login Here</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+   <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>EventHub</h3>
+                    <p>The premier platform for student events and campus activities. Join our community today!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-day"></i> Events</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="login-student.html"><i class="fas fa-sign-in-alt"></i> Student Login</a></li>
+                        <li><a href="login-admin.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        <li><a href="login-institute.html"><i class="fas fa-university"></i> Institute Login</a></li>
+                        <li><a href="register-student.html"><i class="fas fa-user-plus"></i> Register as Student</a></li>
+                        <li><a href="register-institute.html"><i class="fas fa-university"></i> Register as Institute</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 EventHub. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+document.querySelector('.registration-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+    submitBtn.disabled = true;
+
+    try {
+        // Password validation
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        
+        if (password !== confirmPassword) {
+            throw new Error('Passwords do not match');
+        }
+
+        const formData = {
+            fullname: document.getElementById('fullname').value.trim(),
+            username: document.getElementById('username').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            password: password,
+            studentId: document.getElementById('student-id').value.trim(),
+            major: document.getElementById('major').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            university: document.getElementById('university').value.trim()
+        };
+
+        if (!document.getElementById('terms').checked) {
+            throw new Error('Please accept the terms and conditions');
+        }
+
+        console.log('Sending registration data:', formData);
+        
+        const response = await fetch('http://localhost:5000/api/auth/register/student', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Registration failed');
+        }
+
+        const data = await response.json();
+        console.log('Server response:', data);
+
+        if (data.success) {
+            alert('Registration successful! Please login to continue.');
+            window.location.href = 'login-student.html';
+        } else {
+            throw new Error(data.message || 'Registration failed');
+        }
+
+    } catch (error) {
+        console.error('Registration error:', error);
+        alert(error.message || 'Registration failed. Please try again.');
+    } finally {
+        submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Student Account';
+        submitBtn.disabled = false;
+    }
+});
+</script>
+
+
+</body>
+</html>

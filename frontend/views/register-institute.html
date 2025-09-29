@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute Registration - MetKickStart</title>
+    <link rel="stylesheet" href="register-institute.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-calendar-alt logo-icon"></i>
+            <div class="logo-text">EventHub</div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-calendar-day"></i> Events</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="registration-container">
+            <!-- Top accent line -->
+
+            <!-- Institute Icon -->
+            <div class="institute-icon">
+                <i class="fas fa-university"></i>
+            </div>
+
+            <h2>Register Your Institute</h2>
+            <p class="subtitle">Join our platform to connect with talented students</p>
+
+            <form class="registration-form" id="instituteRegistrationForm">
+                <!-- Institute Basic Information -->
+                <div class="form-group">
+                    <label for="instituteName"><i class="fas fa-university"></i>Institute Name</label>
+                    <input type="text" id="instituteName" name="instituteName" class="form-input" placeholder="Enter institute name" required>
+                    <i class="fas fa-university input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="instituteType"><i class="fas fa-tags"></i>Institute Type</label>
+                    <select id="instituteType" name="instituteType" class="form-input" required>
+                        <option value="">Select institute type</option>
+                        <option value="university">University</option>
+                        <option value="college">College</option>
+                        <option value="technical">Technical Institute</option>
+                        <option value="management">Management Institute</option>
+                        <option value="engineering">Engineering College</option>
+                        <option value="medical">Medical College</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <i class="fas fa-tags input-icon"></i>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i>Official Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter official email" required>
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i>Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter phone number" required>
+                    <i class="fas fa-phone input-icon"></i>
+                </div>
+
+                <!-- Address Information -->
+                <div class="form-group full-width">
+                    <label for="address"><i class="fas fa-map-marker-alt"></i>Complete Address</label>
+                    <textarea id="address" name="address" class="form-input" rows="3" placeholder="Enter complete institute address" required></textarea>
+                    <i class="fas fa-map-marker-alt input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="city"><i class="fas fa-city"></i>City</label>
+                    <input type="text" id="city" name="city" class="form-input" placeholder="Enter city" required>
+                    <i class="fas fa-city input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="state"><i class="fas fa-flag"></i>State</label>
+                    <input type="text" id="state" name="state" class="form-input" placeholder="Enter state" required>
+                    <i class="fas fa-flag input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="pincode"><i class="fas fa-map-pin"></i>PIN Code</label>
+                    <input type="text" id="pincode" name="pincode" class="form-input" placeholder="Enter PIN code" required>
+                    <i class="fas fa-map-pin input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="country"><i class="fas fa-globe"></i>Country</label>
+                    <input type="text" id="country" name="country" class="form-input" value="India" required>
+                    <i class="fas fa-globe input-icon"></i>
+                </div>
+
+                <!-- Institute Details -->
+                <div class="form-group">
+                    <label for="establishedYear"><i class="fas fa-calendar-alt"></i>Established Year</label>
+                    <input type="number" id="establishedYear" name="establishedYear" class="form-input" placeholder="e.g., 1990" min="1800" max="2025" required>
+                    <i class="fas fa-calendar-alt input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="affiliatedTo"><i class="fas fa-link"></i>Affiliated To</label>
+                    <input type="text" id="affiliatedTo" name="affiliatedTo" class="form-input" placeholder="University/Board name">
+                    <i class="fas fa-link input-icon"></i>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="website"><i class="fas fa-globe-americas"></i>Official Website</label>
+                    <input type="url" id="website" name="website" class="form-input" placeholder="https://www.example.com">
+                    <i class="fas fa-globe-americas input-icon"></i>
+                </div>
+
+                <!-- Contact Person Details -->
+                <div class="form-group">
+                    <label for="contactPersonName"><i class="fas fa-user-tie"></i>Contact Person Name</label>
+                    <input type="text" id="contactPersonName" name="contactPersonName" class="form-input" placeholder="Enter contact person name" required>
+                    <i class="fas fa-user-tie input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="designation"><i class="fas fa-id-badge"></i>Designation</label>
+                    <input type="text" id="designation" name="designation" class="form-input" placeholder="e.g., Placement Officer" required>
+                    <i class="fas fa-id-badge input-icon"></i>
+                </div>
+
+                <!-- Account Security -->
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i>Password</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Create strong password" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword"><i class="fas fa-lock"></i>Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Confirm password" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="terms">
+                    <h3><i class="fas fa-shield-alt"></i>Terms & Conditions</h3>
+                    <p>Create your institute account to access our placement management platform</p>
+
+                    <p>By creating an account, you agree to our:</p>
+                    <ul>
+                        <li>Terms of Service and Privacy Policy</li>
+                        <li>Institute verification and authentication process</li>
+                        <li>Data protection and student privacy guidelines</li>
+                        <li>Platform usage and conduct policies</li>
+                        <li>Fee structure and payment terms (if applicable)</li>
+                    </ul>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <label for="agreeTerms">I agree to all terms and conditions and confirm that all information provided is accurate</label>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="form-group full-width">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Register Institute
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        <i class="fas fa-undo"></i>
+                        Reset Form
+                    </button>
+                </div>
+
+                
+
+                <!-- Footer Links -->
+                 <div class="form-footer">
+            <button onclick="window.location.href='index.html'" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            <p style="margin-top: 20px;">Already have an account? <a href="login-institute.html"><i class="fas fa-sign-in-alt"></i> Login Here</a></p>
+        </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>EventHub</h3>
+                    <p>The premier platform for student events and campus activities. Join our community today!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-day"></i> Events</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="login-student.html"><i class="fas fa-sign-in-alt"></i> Student Login</a></li>
+                        <li><a href="login-admin.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        <li><a href="login-institute.html"><i class="fas fa-university"></i> Institute Login</a></li>
+                        <li><a href="register-student.html"><i class="fas fa-user-plus"></i> Register as Student</a></li>
+                        <li><a href="register-institute.html"><i class="fas fa-university"></i> Register as Institute</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 EventHub. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+document.getElementById('instituteRegistrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering Institute...';
+    submitBtn.disabled = true;
+
+    // Get form values
+    const formData = {
+        instituteName: document.getElementById('instituteName').value.trim(),
+        instituteType: document.getElementById('instituteType').value,
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value,
+        phone: document.getElementById('phone').value.trim(),
+        address: document.getElementById('address').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        state: document.getElementById('state').value.trim(),
+        pincode: document.getElementById('pincode').value.trim(),
+        country: document.getElementById('country').value.trim(),
+        establishedYear: parseInt(document.getElementById('establishedYear').value),
+        affiliatedTo: document.getElementById('affiliatedTo').value.trim(),
+        website: document.getElementById('website').value.trim(),
+        contactPersonName: document.getElementById('contactPersonName').value.trim(),
+        designation: document.getElementById('designation').value.trim(),
+        terms: document.getElementById('agreeTerms').checked
+    };
+
+    // Password confirmation check
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    if (formData.password !== confirmPassword) {
+        alert('❌ Passwords do not match!');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        return;
+    }
+
+    // Validate terms
+    if (!formData.terms) {
+        alert('❌ You must accept the terms and conditions');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        return;
+    }
+
+    try {
+        console.log('Sending institute registration request...');
+        
+        const response = await fetch('http://localhost:5000/api/auth/register-institute', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        console.log('Response status:', response.status);
+        
+        const result = await response.json();
+        console.log('Response data:', result);
+
+        if (result.success) {
+            alert('✅ Institute registration successful!');
+            // Store token and redirect
+            localStorage.setItem('token', result.token);
+            localStorage.setItem('user', JSON.stringify(result.user));
+            window.location.href = 'login-institute.html';
+        } else {
+            // Show detailed validation errors
+            if (result.errors) {
+                const errorMessages = result.errors.map(error => error.msg).join('\n');
+                alert('❌ Registration failed:\n' + errorMessages);
+            } else {
+                alert('❌ Registration failed: ' + result.message);
+            }
+        }
+    } catch (error) {
+        console.error('❌ Fetch error:', error);
+        alert('❌ Registration failed. Please check your connection and try again.');
+    } finally {
+        // Reset button state
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+});
+</script>
+
+</body>
+</html>

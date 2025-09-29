@@ -1,0 +1,433 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #333333;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #1a1a1a, #333333);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links a:hover {
+            color: #666666;
+        }
+        
+        /* Main Content Styles */
+        .login-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #1a1a1a, #333333);
+        }
+        
+        .student-icon {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .student-icon i {
+            font-size: 4rem;
+            color: #333333;
+            background: rgba(51, 51, 51, 0.1);
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 5px solid rgba(51, 51, 51, 0.2);
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group label i {
+            color: #333333;
+            font-size: 1.2rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #333333;
+            box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.2);
+            outline: none;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            color: #777;
+            font-size: 1.2rem;
+        }
+        
+        .btn {
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #1a1a1a, #333333);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 117, 252, 0.5);
+        }
+        
+        .btn-secondary {
+            background: #ffffff;
+            color: #444;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .btn-secondary:hover {
+            background: #f5f5f5;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .form-footer a {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .security-tips {
+            background: rgba(51, 51, 51, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .security-tips h3 {
+            color: #333333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .security-tips ul {
+            padding-left: 20px;
+            color: #666;
+        }
+        
+        .security-tips li {
+            margin-bottom: 10px;
+        }
+        
+        .forgot-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .forgot-links a {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .forgot-links a:hover {
+            color: #666666;
+            text-decoration: underline;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-columns {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: #ffffff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ffffff;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-icon {
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: #333333;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px 20px;
+                margin: 30px 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .forgot-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px 15px;
+            }
+            
+            .student-icon i {
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+                font-size: 3rem;
+            }
+            
+            .login-container h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+    
+
+        .admin-icon {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .admin-icon i {
+            font-size: 4rem;
+            color: #333333;
+            background: rgba(51, 51, 51, 0.1);
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 5px solid rgba(51, 51, 51, 0.2);
+        }
+        
+        .institute-icon {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .institute-icon i {
+            font-size: 4rem;
+            color: #333333;
+            background: rgba(51, 51, 51, 0.1);
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 5px solid rgba(51, 51, 51, 0.2);
+        }

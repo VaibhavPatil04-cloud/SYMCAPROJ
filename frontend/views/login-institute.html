@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Institute Login - EventHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles-login.css" />
+
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-calendar-alt logo-icon"></i>
+            <div class="logo-text">EventHub</div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-calendar-day"></i> Events</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+        </nav>
+    </header>
+    <div class="login-container">
+        <div class="institute-icon">
+            <i class="fas fa-university"></i>
+        </div>
+        <h2>Institute Login</h2>
+        <form class="login-form" action="/login/institute" method="POST">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Institute Username</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required />
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required />
+            </div>
+            
+            <div class="forgot-links">
+                <a href="#"><i class="fas fa-question-circle"></i> Forgot Username?</a>
+                <a href="#"><i class="fas fa-key"></i> Forgot Password?</a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login as Institute
+            </button>
+        </form>
+        
+        <div class="security-tips">
+            <h3><i class="fas fa-shield-alt"></i> Institute Login Security</h3>
+            <ul>
+                <li>Use your official institute credentials to log in</li>
+                <li>Never share your administrative access with anyone</li>
+                <li>Log out after each session for security</li>
+                <li>Report any suspicious activity immediately</li>
+            </ul>
+        </div>
+        
+        <div class="form-footer">
+            <button onclick="window.location.href='index.html'" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            <p style="margin-top: 20px;">Don't have an account? <a href="register-institute.html"><i class="fas fa-user-plus"></i> Register Now</a></p>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>EventHub</h3>
+                    <p>The premier platform for student events and campus activities. Join our community today!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-day"></i> Events</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="login-student.html"><i class="fas fa-sign-in-alt"></i> Student Login</a></li>
+                        <li><a href="login-admin.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        <li><a href="login-institute.html"><i class="fas fa-university"></i> Institute Login</a></li>
+                        <li><a href="register-student.html"><i class="fas fa-user-plus"></i> Register as Student</a></li>
+                        <li><a href="register-institute.html"><i class="fas fa-university"></i> Register as Institute</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 EventHub. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+document.querySelector('.login-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+    submitBtn.disabled = true;
+
+    const formData = {
+        identifier: document.getElementById('username').value.trim(),
+        password: document.getElementById('password').value
+    };
+
+    try {
+        const response = await fetch('http://localhost:5000/api/auth/login-institute', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert('✅ Institute login successful!');
+            // Store token and redirect
+            localStorage.setItem('token', result.token);
+            localStorage.setItem('user', JSON.stringify(result.user));
+            window.location.href = 'dashboard-institute.html';
+        } else {
+            alert('❌ Login failed: ' + result.message);
+        }
+    } catch (error) {
+        console.error('❌ Error:', error);
+        alert('❌ Login failed. Please try again.');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+});
+</script>
+
+</body>
+</html>

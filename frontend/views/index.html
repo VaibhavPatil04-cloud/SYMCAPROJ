@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Event Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-calendar-alt logo-icon"></i>
+            <div class="logo-text">EventHub</div>
+        </div>
+        <nav class="nav-links" onmouseover="showDropdown()" onmouseout="hideDropdown()">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-calendar-day"></i> Events</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+            
+            <div class="dropdown">
+                <a href="#" class="register-link" id="register-link">
+                    <i class="fas fa-user-plus"></i> Register <i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="register-student.html">
+                        <i class="fas fa-user-graduate"></i> Register as Student
+                    </a>
+                    <a href="register-institute.html">
+                        <i class="fas fa-university"></i> Register as Institute
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Connect. Discover. Experience.</h1>
+                <p>Join thousands of students in our vibrant event platform. Discover exciting opportunities, connect with like-minded individuals, and create unforgettable campus experiences.</p>
+                <div class="student-highlight">
+                    <i class="fas fa-graduation-cap"></i> 
+                    <strong>Exclusive student platform</strong>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <h2>Welcome to EventHub</h2>
+                <p>Please select your login option or register as a student</p>
+                
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="window.location.href='login-admin.html'">
+                        <i class="fas fa-user-shield"></i> Admin Login
+                    </button>
+                    <button class="btn btn-primary" onclick="window.location.href='login-institute.html'">
+                        <i class="fas fa-university"></i> Institute Login
+                    </button>
+                    <button class="btn btn-primary" onclick="window.location.href='login-student.html'">
+                        <i class="fas fa-user-graduate"></i> Student Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="steps-section">
+        <div class="steps-container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-user-plus step-icon"></i>
+                    <h3>Register</h3>
+                    <p>Create your student account</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-search step-icon"></i>
+                    <h3>Explore</h3>
+                    <p>Find events that interest you</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-users step-icon"></i>
+                    <h3>Connect</h3>
+                    <p>Network with other students</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <i class="fas fa-calendar-check step-icon"></i>
+                    <h3>Experience</h3>
+                    <p>Attend amazing events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="features-container">
+            <h2>Why Choose Our Platform?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-calendar-check feature-icon"></i>
+                    <h3>Easy Event Management</h3>
+                    <p>Create and manage events with our intuitive tools and dashboard.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Student Community</h3>
+                    <p>Connect with thousands of students from various institutions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-bell feature-icon"></i>
+                    <h3>Personalized Notifications</h3>
+                    <p>Get alerts for events that match your interests and major.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-section">
+    <div class="feedback-container">
+        <h2>We Value Your Feedback</h2>
+        <p>Your opinion helps us improve EventHub for everyone. Share your experience and help shape the future of our platform.</p>
+        
+        <div class="feedback-benefits">
+            <div class="benefit-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Drive Improvements</h3>
+                <p>Your feedback directly influences our development roadmap and feature priorities.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-users"></i>
+                <h3>Better Community</h3>
+                <p>Help us create a platform that serves the needs of students and institutions alike.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Share Ideas</h3>
+                <p>Got a great idea? This is your chance to suggest features that matter to you.</p>
+            </div>
+        </div>
+        
+        <div class="feedback-cta">
+            <button class="btn btn-primary feedback-toggle-btn" id="feedbackToggle">
+                <i class="fas fa-comment-alt"></i> Share Your Feedback
+            </button>
+            <p class="feedback-note">Takes just 2 minutes - Your input makes a difference!</p>
+        </div>
+        
+        <div class="feedback-form-container" id="feedbackFormContainer" style="display: none;">
+            <form class="feedback-form" id="feedbackForm">
+                <div class="form-header">
+                    <h3>Share Your Experience</h3>
+                    <button type="button" class="close-form" id="closeForm">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">1. User Type</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select your role</option>
+                        <option value="student">Student</option>
+                        <option value="institute">Institute</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>2. Is this platform beneficial for you?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="benefits" value="event_discovery"> Event Discovery
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="benefits" value="networking"> Networking Opportunities
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="benefits" value="campus_engagement"> Campus Engagement
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="benefits" value="skill_development"> Skill Development
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>3. Will you use our platform in the future?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="future_use" value="yes" required> Yes
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="future_use" value="no"> No
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="suggestions">4. Suggestions for Improvement</label>
+                    <textarea id="suggestions" name="suggestions" placeholder="What can we do better? Share your ideas..." rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>5. Overall Rating</label>
+                    <div class="rating-group">
+                        <div class="rating-options">
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="1" required>
+                                <span>1</span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="2">
+                                <span>2</span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="3">
+                                <span>3</span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="4">
+                                <span>4</span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="5">
+                                <span>5</span>
+                            </label>
+                        </div>
+                        <div class="rating-labels">
+                            <span>Poor</span>
+                            <span>Excellent</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Feedback
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>EventHub</h3>
+                    <p>The premier platform for student events and campus activities. Join our community today!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-day"></i> Events</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="login-student.html"><i class="fas fa-sign-in-alt"></i> Student Login</a></li>
+                        <li><a href="login-admin.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        <li><a href="login-institute.html"><i class="fas fa-university"></i> Institute Login</a></li>
+                        <li><a href="register-student.html"><i class="fas fa-user-plus"></i> Register as Student</a></li>
+                        <li><a href="register-institute.html"><i class="fas fa-university"></i> Register as Institute</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 EventHub. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let hideTimer;
+
+        function showDropdown() {
+            clearTimeout(hideTimer);
+            document.getElementById("dropdown-content").classList.add("show-dropdown");
+            document.getElementById("register-link").querySelector('.fa-caret-down').style.transform = "rotate(180deg)";
+        }
+
+        function hideDropdown() {
+            hideTimer = setTimeout(function() {
+                document.getElementById("dropdown-content").classList.remove("show-dropdown");
+                document.getElementById("register-link").querySelector('.fa-caret-down').style.transform = "rotate(0deg)";
+            }, 300); // 300ms delay before hiding
+        }
+
+        // Feedback form toggle functionality
+document.getElementById('feedbackToggle').addEventListener('click', function() {
+    const formContainer = document.getElementById('feedbackFormContainer');
+    formContainer.style.display = 'block';
+    formContainer.classList.add('show');
+    
+    // Scroll to form
+    formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('closeForm').addEventListener('click', function() {
+    const formContainer = document.getElementById('feedbackFormContainer');
+    formContainer.classList.remove('show');
+    setTimeout(() => {
+        formContainer.style.display = 'none';
+    }, 300);
+});
+
+// Feedback form submission
+// Feedback form submission - ULTRA SIMPLE VERSION
+document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(this);
+    const feedbackData = {
+        userType: formData.get('role'),
+        benefits: formData.getAll('benefits'),
+        futureUse: formData.get('future_use'),
+        suggestions: formData.get('suggestions'),
+        rating: parseInt(formData.get('rating'))
+    };
+
+    console.log('📝 Form data:', feedbackData);
+
+    // Show loading
+    const submitBtn = this.querySelector('.submit-btn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    submitBtn.disabled = true;
+
+    try {
+        console.log('🚀 Attempting to submit feedback...');
+        
+        // TRY BOTH ROUTES IF ONE FAILS
+        let response = await fetch('/api/feedback/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(feedbackData)
+        });
+
+        console.log('📨 Response status:', response.status);
+
+        // If first route fails, try direct route
+        if (!response.ok) {
+            console.log('🔄 First route failed, trying direct route...');
+            response = await fetch('/api/feedback/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(feedbackData)
+            });
+        }
+
+        if (!response.ok) {
+            throw new Error(`Server returned ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('✅ Success!', result);
+
+        alert('Thank you for your feedback! Successfully submitted.');
+        this.reset();
+        document.getElementById('closeForm').click();
+
+    } catch (error) {
+        console.error('❌ Final error:', error);
+        alert('Error: ' + error.message + '. Please try again.');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+});
+</script>
+
+</body>
+</html>
