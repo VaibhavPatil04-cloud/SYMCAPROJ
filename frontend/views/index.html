@@ -329,7 +329,6 @@ document.getElementById('closeForm').addEventListener('click', function() {
 document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Get form data
     const formData = new FormData(this);
     const feedbackData = {
         userType: formData.get('role'),
@@ -341,17 +340,15 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
 
     console.log('📝 Form data:', feedbackData);
 
-    // Show loading
     const submitBtn = this.querySelector('.submit-btn');
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
     submitBtn.disabled = true;
 
     try {
-        console.log('🚀 Attempting to submit feedback...');
+        console.log('🚀 Submitting feedback...');
         
-        // TRY BOTH ROUTES IF ONE FAILS
-        let response = await fetch('/api/feedback/submit', {
+        const response = await fetch('http://localhost:5000/api/feedback/submit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -360,18 +357,6 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
         });
 
         console.log('📨 Response status:', response.status);
-
-        // If first route fails, try direct route
-        if (!response.ok) {
-            console.log('🔄 First route failed, trying direct route...');
-            response = await fetch('/api/feedback/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(feedbackData)
-            });
-        }
 
         if (!response.ok) {
             throw new Error(`Server returned ${response.status}`);
@@ -385,8 +370,8 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
         document.getElementById('closeForm').click();
 
     } catch (error) {
-        console.error('❌ Final error:', error);
-        alert('Error: ' + error.message + '. Please try again.');
+        console.error('❌ Error:', error);
+        alert('Error submitting feedback. Please try again.');
     } finally {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;

@@ -9,14 +9,12 @@ const app = express();
 app.use(cors());
 app.options('*', cors());
 
-// Manual CORS
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
-    if (req.method === 'OPTIONS') return res.status(200).end();
-    next();
-});
+// Update CORS configuration
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 
 // Middleware
 app.use(express.json());
@@ -45,20 +43,7 @@ const feedbackRoutes = require('./routes/feedback');
 
 // USE ROUTES - MAKE SURE THESE ARE BEFORE ANY OTHER ROUTES
 app.use('/api/auth', authRoutes);
-app.use('/api/feedback', feedbackRoutes);
-
-// DIRECT FEEDBACK ROUTE AS PRIMARY SOLUTION
-app.post('/api/feedback/submit', (req, res) => {
-    console.log('🎯 DIRECT FEEDBACK ROUTE HIT!', req.body);
-    
-    res.json({
-        success: true,
-        message: 'Feedback received via DIRECT route!',
-        data: req.body,
-        timestamp: new Date().toISOString(),
-        route: 'server.js direct route'
-    });
-});
+app.use('/api/feedback', feedbackRoutes);  // Make sure this comes before the 404 handler
 
 // Test if routes are working
 app.get('/api/debug-routes', (req, res) => {

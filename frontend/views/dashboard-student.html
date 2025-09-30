@@ -3,820 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventHub - Student Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Student Dashboard - Event Management Platform</title>
     <link rel="stylesheet" href="dashboard-student.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
                 <i class="fas fa-calendar-alt logo-icon"></i>
                 <span class="logo-text">EventHub</span>
             </div>
         </div>
-        <div class="student-info">
-            <div class="student-avatar">
-                <i class="fas fa-user-graduate"></i>
-            </div>
-            <div class="student-name">John Doe</div>
-            <div class="student-id">CS21B001</div>
-        </div>
+
         <div class="sidebar-menu">
-            <div class="menu-section">
-                <div class="menu-section-title">Main</div>
-                <a href="#" class="menu-item active" data-tab="dashboard">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="events">
-                    <i class="fas fa-calendar"></i>
-                    <span>Browse Events</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="registered">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>My Events</span>
-                    <span class="notification-badge">3</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="saved">
-                    <i class="fas fa-bookmark"></i>
-                    <span>Saved Events</span>
-                </a>
+            <div class="menu-item active" data-section="overview">
+                <i class="fas fa-chart-pie"></i>
+                <span>Overview</span>
             </div>
-            <div class="menu-section">
-                <div class="menu-section-title">Profile</div>
-                <a href="#" class="menu-item" data-tab="profile">
-                    <i class="fas fa-user-edit"></i>
-                    <span>Update Profile</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="certificates">
-                    <i class="fas fa-award"></i>
-                    <span>Certificates</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-history"></i>
-                    <span>Activity History</span>
-                </a>
+            <div class="menu-item" data-section="browse-events">
+                <i class="fas fa-search"></i>
+                <span>Browse Events</span>
             </div>
-            <div class="menu-section">
-                <div class="menu-section-title">Support</div>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Help & FAQ</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact Support</span>
-                </a>
+            <div class="menu-item" data-section="my-events">
+                <i class="fas fa-calendar-check"></i>
+                <span>My Events</span>
+            </div>
+            <div class="menu-item" data-section="update-profile">
+                <i class="fas fa-user-cog"></i>
+                <span>Update Profile</span>
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Top Bar -->
         <div class="top-bar">
             <div class="page-title">
-                <button class="mobile-menu-btn" onclick="toggleSidebar()" style="display: none;">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 id="page-title">Student Dashboard</h1>
-                <p id="page-subtitle">Discover and participate in amazing events</p>
+                <h1 id="page-title"><i class="fas fa-tachometer-alt"></i> Student Dashboard</h1>
+                <p>Welcome back, John Doe! | CS21B001 | Computer Science Engineering</p>
             </div>
-            <div class="top-actions">
-                <button class="notification-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">2</span>
-                </button>
-                <div class="user-profile" onclick="showProfile()">
-                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Student" style="width: 40px; height: 40px; border-radius: 50%;">
-                    <div>
-                        <div style="font-weight: 600;">John Doe</div>
-                        <div style="font-size: 0.75rem; opacity: 0.7;">Student</div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <button class="logout-btn" onclick="window.location.href='index.html'">
-                    <i class="fas fa-sign-out-alt"></i>
+            <div class="user-profile">
+                <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--primary);"></i>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
         </div>
 
-        <div class="content-area">
-            <!-- Dashboard Tab -->
-            <div id="dashboard-content" class="tab-content">
-                <!-- Profile Section -->
-                <div class="profile-section">
-                    <div class="student-avatar-large">
-                        <i class="fas fa-user-graduate"></i>
+        <!-- Overview Section -->
+        <div id="overview-section" class="content-section active">
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Active Events</div>
+                        <div class="card-icon events">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
                     </div>
-                    <div class="student-info-large">
-                        <h2>Welcome back, John Doe!</h2>
-                        <p>Computer Science Engineering • Final Year • Roll No: CS21B001</p>
-                        <p style="margin-top: 8px; color: var(--primary); font-weight: 600;">
-                            <i class="fas fa-university"></i> MIT Academy of Engineering
-                        </p>
-                    </div>
-                    <div class="profile-actions">
-                        <button class="btn btn-outline" onclick="editProfile()">
-                            <i class="fas fa-edit"></i>
-                            Edit Profile
-                        </button>
-                    </div>
+                    <div class="card-value">5</div>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="quick-actions">
-                    <button class="action-button" onclick="switchTab('events')">
-                        <i class="fas fa-search"></i> Discover Events
-                    </button>
-                    <button class="action-button" onclick="switchTab('registered')">
-                        <i class="fas fa-calendar-check"></i> My Events
-                    </button>
-                    <button class="action-button" onclick="switchTab('certificates')">
-                        <i class="fas fa-download"></i> Download Certificates
-                    </button>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Applied Events</div>
+                        <div class="card-icon applied">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="card-value">8</div>
                 </div>
 
-                <!-- Dashboard Cards -->
-                <div class="dashboard-cards">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Events Registered</div>
-                            <div class="card-icon">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                        </div>
-                        <div class="card-value" id="registered-count">5</div>
-                        <div class="card-footer">
-                            <i class="fas fa-arrow-up" style="color: var(--success);"></i>
-                            <span style="color: var(--success);">2 this month</span>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Total Events</div>
+                        <div class="card-icon total-events">
+                            <i class="fas fa-calendar-check"></i>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Upcoming Events</div>
-                            <div class="card-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                        </div>
-                        <div class="card-value" id="upcoming-count">3</div>
-                        <div class="card-footer">
-                            <i class="fas fa-calendar" style="color: var(--info);"></i>
-                            <span style="color: var(--info);">Next: Tomorrow</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Certificates Earned</div>
-                            <div class="card-icon">
-                                <i class="fas fa-award"></i>
-                            </div>
-                        </div>
-                        <div class="card-value" id="certificates-count">7</div>
-                        <div class="card-footer">
-                            <i class="fas fa-star" style="color: var(--warning);"></i>
-                            <span style="color: var(--warning);">Great progress!</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Saved Events</div>
-                            <div class="card-icon">
-                                <i class="fas fa-bookmark"></i>
-                            </div>
-                        </div>
-                        <div class="card-value" id="saved-count">4</div>
-                        <div class="card-footer">
-                            <i class="fas fa-heart" style="color: var(--text-light);"></i>
-                            <span style="color: var(--text-light);">For later</span>
-                        </div>
-                    </div>
+                    <div class="card-value">1,248</div>
                 </div>
 
-                <!-- Featured Events -->
-                <div class="section-header">
-                    <h2 class="section-title">Featured Events</h2>
-                    <button class="btn btn-primary" onclick="switchTab('events')">
-                        <i class="fas fa-eye"></i>
-                        View All Events
-                    </button>
-                </div>
-
-                <div class="events-grid" id="featured-events">
-                    <!-- Featured events will be loaded here -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Total Institutes</div>
+                        <div class="card-icon institutes">
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </div>
+                    <div class="card-value">85</div>
                 </div>
             </div>
+        </div>
 
-            <!-- Events Tab -->
-            <div id="events-content" class="tab-content" style="display: none;">
-                <div class="section-header">
-                    <h2 class="section-title">Browse Events</h2>
-                    <div style="display: flex; gap: 12px;">
-                        <button class="btn btn-outline" onclick="showSavedEvents()">
-                            <i class="fas fa-bookmark"></i>
-                            Saved (<span id="saved-count-btn">4</span>)
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Filter Tabs -->
-                <div class="filter-tabs">
-                    <div class="filter-tab active" onclick="filterEvents('all')">All Events</div>
-                    <div class="filter-tab" onclick="filterEvents('open')">Open</div>
-                    <div class="filter-tab" onclick="filterEvents('upcoming')">Upcoming</div>
-                    <div class="filter-tab" onclick="filterEvents('free')">Free</div>
-                </div>
-
-                <!-- Search and Filter -->
+        <!-- Browse Events Section -->
+        <div id="browse-events-section" class="content-section">
+            <div class="section-container">
+                <!-- Search and Filters -->
                 <div class="search-filter-section">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search events..." id="event-search" oninput="searchEvents()">
+                        <input type="text" placeholder="Search for events..." id="eventSearch">
                     </div>
-                    <select class="filter-select" id="category-filter" onchange="filterByCategory()">
-                        <option value="">All Categories</option>
-                        <option value="tech">Technology</option>
-                        <option value="cultural">Cultural</option>
-                        <option value="sports">Sports</option>
-                        <option value="academic">Academic</option>
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="technical">Technical</option>
+                        <option value="business">Business</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="seminar">Seminar</option>
                     </select>
-                    <select class="filter-select" id="sort-filter" onchange="sortEvents()">
-                        <option value="date">Sort by Date</option>
-                        <option value="popularity">Most Popular</option>
-                        <option value="fee">Fee (Low to High)</option>
+                    <select class="filter-select" id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="open">Open</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="closed">Closed</option>
                     </select>
                 </div>
 
                 <!-- Events Grid -->
-                <div class="events-grid" id="all-events">
-                    <!-- All events will be loaded here -->
-                </div>
-            </div>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">AI/ML Summit 2025</h3>
+                                <div class="event-status open">Registration Open</div>
+                            </div>
+                            <button class="event-bookmark">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                        <div class="event-meta">
+                            <div class="event-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>December 15, 2025</span>
+                            </div>
+                            <div class="event-venue">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>MIT Academy Auditorium</span>
+                            </div>
+                            <div class="event-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>250 / 500 registered</span>
+                            </div>
+                        </div>
+                        <p class="event-description">
+                            Join us for an intensive summit on Artificial Intelligence and Machine Learning with industry experts and hands-on workshops.
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">Technical</span>
+                            <span class="event-tag">AI/ML</span>
+                            <span class="event-tag">Workshop</span>
+                        </div>
+                        <div class="event-fee">Free</div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Register Now
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                        </div>
+                    </div>
 
-            <!-- My Events Tab -->
-            <div id="registered-content" class="tab-content" style="display: none;">
-                <div class="section-header">
-                    <h2 class="section-title">My Registered Events</h2>
-                </div>
+                    <div class="event-card">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">Startup Pitch Competition</h3>
+                                <div class="event-status upcoming">Upcoming</div>
+                            </div>
+                            <button class="event-bookmark bookmarked">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                        <div class="event-meta">
+                            <div class="event-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>November 28, 2025</span>
+                            </div>
+                            <div class="event-venue">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>COEP Innovation Hub</span>
+                            </div>
+                            <div class="event-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>150 / 200 registered</span>
+                            </div>
+                        </div>
+                        <p class="event-description">
+                            Present your startup ideas to industry veterans and investors. Win exciting prizes and potential funding opportunities.
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">Business</span>
+                            <span class="event-tag">Entrepreneurship</span>
+                            <span class="event-tag">Competition</span>
+                        </div>
+                        <div class="event-fee">₹500</div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Register Now
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                        </div>
+                    </div>
 
-                <div class="filter-tabs">
-                    <div class="filter-tab active" onclick="filterMyEvents('all')">All</div>
-                    <div class="filter-tab" onclick="filterMyEvents('upcoming')">Upcoming</div>
-                    <div class="filter-tab" onclick="filterMyEvents('attended')">Attended</div>
-                    <div class="filter-tab" onclick="filterMyEvents('missed')">Missed</div>
-                </div>
-
-                <div class="events-grid" id="my-events">
-                    <!-- My events will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Saved Events Tab -->
-            <div id="saved-content" class="tab-content" style="display: none;">
-                <div class="section-header">
-                    <h2 class="section-title">Saved Events</h2>
-                    <button class="btn btn-outline" onclick="clearAllSaved()">
-                        <i class="fas fa-trash"></i>
-                        Clear All
-                    </button>
-                </div>
-
-                <div class="events-grid" id="saved-events">
-                    <!-- Saved events will be loaded here -->
+                    <div class="event-card">
+                        <div class="event-header">
+                            <div>
+                                <h3 class="event-title">Blockchain Workshop</h3>
+                                <div class="event-status closed">Registration Closed</div>
+                            </div>
+                            <button class="event-bookmark">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                        <div class="event-meta">
+                            <div class="event-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>November 25, 2025</span>
+                            </div>
+                            <div class="event-venue">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>VIT Tech Center</span>
+                            </div>
+                            <div class="event-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>150 / 150 registered</span>
+                            </div>
+                        </div>
+                        <p class="event-description">
+                            Learn the fundamentals of blockchain technology and smart contracts with practical implementation examples.
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">Technical</span>
+                            <span class="event-tag">Blockchain</span>
+                            <span class="event-tag">Workshop</span>
+                        </div>
+                        <div class="event-fee">₹300</div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary" disabled>
+                                <i class="fas fa-times"></i> Registration Closed
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Registration Modal -->
-    <div id="registrationModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Event Registration</h2>
-                <button class="close" onclick="closeModal('registrationModal')">&times;</button>
+        <!-- My Events Section -->
+        <div id="my-events-section" class="content-section">
+            <div class="section-container">
+                <!-- Filter Tabs -->
+                <div class="filter-tabs">
+                    <div class="filter-tab active" data-filter="all">All Events</div>
+                    <div class="filter-tab" data-filter="upcoming">Upcoming</div>
+                    <div class="filter-tab" data-filter="completed">Completed</div>
+                    <div class="filter-tab" data-filter="saved">Saved</div>
+                </div>
+
+                <!-- My Events List -->
+                <div class="my-events-list">
+                    <div class="my-event-card upcoming">
+                        <div class="event-info">
+                            <h4>AI/ML Summit 2025</h4>
+                            <p class="event-date-venue">
+                                <i class="fas fa-calendar"></i> Dec 15, 2025 | 
+                                <i class="fas fa-map-marker-alt"></i> MIT Academy
+                            </p>
+                            <span class="event-status-badge upcoming">Upcoming</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-outline btn-sm">View Details</button>
+                            <button class="btn btn-primary btn-sm">Download Ticket</button>
+                        </div>
+                    </div>
+
+                    <div class="my-event-card completed">
+                        <div class="event-info">
+                            <h4>Python Bootcamp</h4>
+                            <p class="event-date-venue">
+                                <i class="fas fa-calendar"></i> Oct 20, 2025 | 
+                                <i class="fas fa-map-marker-alt"></i> Online
+                            </p>
+                            <span class="event-status-badge completed">Completed</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-outline btn-sm">View Certificate</button>
+                            <button class="btn btn-primary btn-sm">Download Certificate</button>
+                        </div>
+                    </div>
+
+                    <div class="my-event-card saved">
+                        <div class="event-info">
+                            <h4>Blockchain Summit</h4>
+                            <p class="event-date-venue">
+                                <i class="fas fa-calendar"></i> Jan 10, 2026 | 
+                                <i class="fas fa-map-marker-alt"></i> VIT Pune
+                            </p>
+                            <span class="event-status-badge saved">Saved</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary btn-sm">Register Now</button>
+                            <button class="btn btn-outline btn-sm">Remove from Saved</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <div id="registration-form">
-                    <!-- Registration form will be loaded here -->
+        </div>
+
+        <!-- Update Profile Section -->
+        <div id="update-profile-section" class="content-section">
+            <div class="section-container">
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" value="John Doe" class="form-input">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="john.doe@student.com" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" value="+91-9876543210" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentId">Student ID</label>
+                            <input type="text" id="studentId" value="CS21B001" class="form-input" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="major">Major</label>
+                            <input type="text" id="major" value="Computer Science Engineering" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="university">University</label>
+                        <input type="text" id="university" value="MIT Academy of Engineering" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" class="form-textarea" rows="4" placeholder="Tell us about yourself...">Passionate computer science student interested in AI/ML and software development.</textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-outline">Cancel</button>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Sample data
-        let allEvents = [
-            {
-                id: 1,
-                title: "AI & Machine Learning Workshop",
-                date: "2025-08-15",
-                time: "10:00 AM",
-                venue: "Tech Auditorium",
-                capacity: 100,
-                registered: 75,
-                fee: 500,
-                status: "Open",
-                category: "tech",
-                description: "Learn the fundamentals of AI and ML with hands-on experience.",
-                tags: ["AI", "ML", "Workshop", "Hands-on"],
-                featured: true
-            },
-            {
-                id: 2,
-                title: "Cultural Festival 2025",
-                date: "2025-08-20",
-                time: "4:00 PM",
-                venue: "Main Ground",
-                capacity: 500,
-                registered: 320,
-                fee: 0,
-                status: "Open",
-                category: "cultural",
-                description: "Annual cultural fest with music, dance, and drama performances.",
-                tags: ["Cultural", "Music", "Dance", "Festival"],
-                featured: true
-            },
-            {
-                id: 3,
-                title: "Hackathon 2025",
-                date: "2025-08-25",
-                time: "9:00 AM",
-                venue: "Computer Lab",
-                capacity: 80,
-                registered: 65,
-                fee: 200,
-                status: "Open",
-                category: "tech",
-                description: "48-hour coding marathon to build innovative solutions.",
-                tags: ["Hackathon", "Coding", "Innovation", "Team"],
-                featured: false
-            },
-            {
-                id: 4,
-                title: "Business Symposium",
-                date: "2025-08-30",
-                time: "2:00 PM",
-                venue: "Conference Hall",
-                capacity: 150,
-                registered: 45,
-                fee: 300,
-                status: "Open",
-                category: "academic",
-                description: "Industry experts share insights on modern business practices.",
-                tags: ["Business", "Symposium", "Industry", "Networking"],
-                featured: false
-            }
-        ];
-
-        let registeredEvents = [1, 2]; // Events the student is registered for
-        let savedEvents = [3, 4]; // Events the student has saved
-
-        // Navigation
+        // Menu functionality
         document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const tab = this.getAttribute('data-tab');
-                if (tab) {
-                    switchTab(tab);
-                    
-                    document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                }
+            item.addEventListener('click', function() {
+                // Remove active class from all menu items and sections
+                document.querySelectorAll('.menu-item').forEach(menu => menu.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked menu item
+                this.classList.add('active');
+
+                // Show corresponding section
+                const sectionId = this.getAttribute('data-section') + '-section';
+                document.getElementById(sectionId).classList.add('active');
+
+                // Update page title based on section
+                const titles = {
+                    'overview': '<i class="fas fa-tachometer-alt"></i> Student Dashboard',
+                    'browse-events': '<i class="fas fa-search"></i> Browse Events',
+                    'my-events': '<i class="fas fa-calendar-check"></i> My Events',
+                    'update-profile': '<i class="fas fa-user-cog"></i> Update Profile'
+                };
+
+                const section = this.getAttribute('data-section');
+                document.getElementById('page-title').innerHTML = titles[section];
             });
         });
 
-        function switchTab(tab) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.style.display = 'none';
-            });
-            
-            // Show selected tab content
-            document.getElementById(tab + '-content').style.display = 'block';
-            
-            // Update page title
-            const titles = {
-                dashboard: 'Student Dashboard',
-                events: 'Browse Events',
-                registered: 'My Events',
-                saved: 'Saved Events',
-                profile: 'Profile Settings',
-                certificates: 'My Certificates'
-            };
-            
-            const subtitles = {
-                dashboard: 'Discover and participate in amazing events',
-                events: 'Find events that match your interests',
-                registered: 'Manage your registered events',
-                saved: 'Events you want to attend later',
-                profile: 'Update your profile information',
-                certificates: 'View and download your certificates'
-            };
-            
-            document.getElementById('page-title').textContent = titles[tab];
-            document.getElementById('page-subtitle').textContent = subtitles[tab];
-            
-            // Load content based on tab
-            if (tab === 'events') {
-                loadAllEvents();
-            } else if (tab === 'registered') {
-                loadMyEvents();
-            } else if (tab === 'saved') {
-                loadSavedEvents();
-            } else if (tab === 'dashboard') {
-                loadFeaturedEvents();
-            }
-        }
+        // Filter tabs functionality
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
 
-        // Event rendering functions
-        function renderEventCard(event, showSaveButton = true, showRegistrationStatus = false) {
-            const isRegistered = registeredEvents.includes(event.id);
-            const isSaved = savedEvents.includes(event.id);
-            const spotsLeft = event.capacity - event.registered;
-            
-            return `
-                <div class="event-card" data-id="${event.id}" data-category="${event.category}">
-                    <div class="event-header">
-                        <div>
-                            <div class="event-title">${event.title}</div>
-                            <span class="event-status ${event.status.toLowerCase()}">${event.status}</span>
-                        </div>
-                        ${showSaveButton ? `
-                            <button class="event-bookmark ${isSaved ? 'bookmarked' : ''}" 
-                                    onclick="toggleSaveEvent(${event.id})">
-                                <i class="fas fa-bookmark"></i>
-                            </button>
-                        ` : ''}
-                    </div>
-                    
-                    <div class="event-meta">
-                        <div class="event-date">
-                            <i class="fas fa-calendar"></i>
-                            ${new Date(event.date).toLocaleDateString()} at ${event.time}
-                        </div>
-                        <div class="event-venue">
-                            <i class="fas fa-map-marker-alt"></i>
-                            ${event.venue}
-                        </div>
-                        <div class="event-capacity">
-                            <i class="fas fa-users"></i>
-                            ${event.registered}/${event.capacity} registered (${spotsLeft} spots left)
-                        </div>
-                    </div>
-                    
-                    <div class="event-description">${event.description}</div>
-                    
-                    <div class="event-tags">
-                        ${event.tags.map(tag => `<span class="event-tag">${tag}</span>`).join('')}
-                    </div>
-                    
-                    <div class="event-fee">
-                        ${event.fee === 0 ? 'Free Event' : `₹${event.fee}`}
-                    </div>
-                    
-                    <div class="event-actions">
-                        ${!isRegistered ? `
-                            <button class="btn btn-primary" onclick="registerForEvent(${event.id})" 
-                                    ${spotsLeft === 0 ? 'disabled' : ''}>
-                                <i class="fas fa-calendar-plus"></i>
-                                ${spotsLeft === 0 ? 'Full' : 'Register'}
-                            </button>
-                        ` : `
-                            <button class="btn btn-primary" disabled>
-                                <i class="fas fa-check"></i>
-                                Registered
-                            </button>
-                        `}
-                        <button class="btn btn-outline" onclick="viewEventDetails(${event.id})">
-                            <i class="fas fa-info-circle"></i>
-                            Details
-                        </button>
-                    </div>
-                    
-                    ${showRegistrationStatus && isRegistered ? `
-                        <div style="margin-top: 12px; padding: 12px; background: rgba(76, 175, 80, 0.1); border-radius: 8px; color: var(--success); font-weight: 600;">
-                            <i class="fas fa-check-circle"></i> You are registered for this event
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-        }
+                const filter = this.getAttribute('data-filter');
+                const events = document.querySelectorAll('.my-event-card');
 
-        function loadFeaturedEvents() {
-            const featuredEventsContainer = document.getElementById('featured-events');
-            const featured = allEvents.filter(event => event.featured);
-            featuredEventsContainer.innerHTML = featured.map(event => renderEventCard(event)).join('');
-        }
-
-        function loadAllEvents() {
-            const eventsContainer = document.getElementById('all-events');
-            eventsContainer.innerHTML = allEvents.map(event => renderEventCard(event)).join('');
-        }
-
-        function loadMyEvents() {
-            const myEventsContainer = document.getElementById('my-events');
-            const myEvents = allEvents.filter(event => registeredEvents.includes(event.id));
-            myEventsContainer.innerHTML = myEvents.map(event => renderEventCard(event, false, true)).join('');
-        }
-
-        function loadSavedEvents() {
-            const savedEventsContainer = document.getElementById('saved-events');
-            const saved = allEvents.filter(event => savedEvents.includes(event.id));
-            savedEventsContainer.innerHTML = saved.map(event => renderEventCard(event, true)).join('');
-        }
-
-        // Event interaction functions
-        function registerForEvent(eventId) {
-            const event = allEvents.find(e => e.id === eventId);
-            if (!event) return;
-
-            // Show registration modal
-            showRegistrationModal(event);
-        }
-
-        function showRegistrationModal(event) {
-            const modal = document.getElementById('registrationModal');
-            const formContainer = document.getElementById('registration-form');
-            
-            formContainer.innerHTML = `
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: var(--primary); margin-bottom: 8px;">${event.title}</h3>
-                    <p style="color: var(--text-light);">${event.date} at ${event.time} • ${event.venue}</p>
-                    <p style="font-weight: 600; font-size: 1.125rem; margin-top: 12px;">
-                        Registration Fee: ${event.fee === 0 ? 'Free' : `₹${event.fee}`}
-                    </p>
-                </div>
-                
-                <form id="registration-form-data">
-                    <div style="margin-bottom: 16px;">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name</label>
-                        <input type="text" value="John Doe" readonly style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; background: #f9f9f9;">
-                    </div>
-                    
-                    <div style="margin-bottom: 16px;">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email</label>
-                        <input type="email" value="john.doe@university.edu" readonly style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; background: #f9f9f9;">
-                    </div>
-                    
-                    <div style="margin-bottom: 16px;">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Phone Number</label>
-                        <input type="tel" placeholder="Enter your phone number" required style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px;">
-                    </div>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Additional Comments (Optional)</label>
-                        <textarea placeholder="Any special requirements or questions..." style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; min-height: 80px; resize: vertical;"></textarea>
-                    </div>
-                    
-                    <div style="display: flex; gap: 12px;">
-                        <button type="button" class="btn btn-outline" onclick="closeModal('registrationModal')" style="flex: 1;">Cancel</button>
-                        <button type="submit" class="btn btn-primary" style="flex: 1;">
-                            <span class="btn-text">Confirm Registration</span>
-                            <span class="loading" style="display: none;"></span>
-                        </button>
-                    </div>
-                </form>
-            `;
-            
-            // Handle form submission
-            document.getElementById('registration-form-data').addEventListener('submit', function(e) {
-                e.preventDefault();
-                confirmRegistration(event.id);
-            });
-            
-            modal.style.display = 'block';
-        }
-
-        function confirmRegistration(eventId) {
-            const submitBtn = document.querySelector('#registration-form-data button[type="submit"]');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const loading = submitBtn.querySelector('.loading');
-            
-            // Show loading
-            btnText.style.display = 'none';
-            loading.style.display = 'inline-block';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Add to registered events
-                if (!registeredEvents.includes(eventId)) {
-                    registeredEvents.push(eventId);
-                    
-                    // Update event registration count
-                    const event = allEvents.find(e => e.id === eventId);
-                    if (event) {
-                        event.registered++;
+                events.forEach(event => {
+                    if (filter === 'all' || event.classList.contains(filter)) {
+                        event.style.display = 'flex';
+                    } else {
+                        event.style.display = 'none';
                     }
-                    
-                    // Update UI
-                    updateDashboardStats();
-                    loadAllEvents();
-                    loadMyEvents();
-                    
-                    showNotification('Successfully registered for the event!', 'success');
-                }
-                
-                closeModal('registrationModal');
-                
-                // Reset button
-                btnText.style.display = 'inline';
-                loading.style.display = 'none';
-                submitBtn.disabled = false;
-            }, 2000);
-        }
-
-        function toggleSaveEvent(eventId) {
-            if (savedEvents.includes(eventId)) {
-                savedEvents = savedEvents.filter(id => id !== eventId);
-                showNotification('Event removed from saved list', 'info');
-            } else {
-                savedEvents.push(eventId);
-                showNotification('Event saved for later!', 'success');
-            }
-            
-            updateDashboardStats();
-            
-            // Update bookmark icons
-            document.querySelectorAll(`[data-id="${eventId}"] .event-bookmark`).forEach(btn => {
-                btn.classList.toggle('bookmarked');
+                });
             });
-            
-            // Update saved count in button
-            document.getElementById('saved-count-btn').textContent = savedEvents.length;
-        }
-
-        function viewEventDetails(eventId) {
-            const event = allEvents.find(e => e.id === eventId);
-            if (event) {
-                alert(`Event Details:\n\nTitle: ${event.title}\nDate: ${event.date} at ${event.time}\nVenue: ${event.venue}\nCapacity: ${event.capacity}\nRegistered: ${event.registered}\nFee: ${event.fee === 0 ? 'Free' : '₹' + event.fee}\n\nDescription: ${event.description}`);
-            }
-        }
-
-        // Filter and search functions
-        function filterEvents(filter) {
-            // Update active tab
-            document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const eventCards = document.querySelectorAll('#all-events .event-card');
-            
-            eventCards.forEach(card => {
-                const eventId = parseInt(card.getAttribute('data-id'));
-                const eventData = allEvents.find(e => e.id === eventId);
-                
-                let show = true;
-                
-                switch(filter) {
-                    case 'open':
-                        show = eventData.status === 'Open';
-                        break;
-                    case 'upcoming':
-                        show = new Date(eventData.date) > new Date();
-                        break;
-                    case 'free':
-                        show = eventData.fee === 0;
-                        break;
-                    default:
-                        show = true;
-                }
-                
-                card.style.display = show ? 'block' : 'none';
-            });
-        }
-
-        function searchEvents() {
-            const searchTerm = document.getElementById('event-search').value.toLowerCase();
-            const eventCards = document.querySelectorAll('#all-events .event-card');
-            
-            eventCards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                card.style.display = text.includes(searchTerm) ? 'block' : 'none';
-            });
-        }
-
-        function filterByCategory() {
-            const category = document.getElementById('category-filter').value;
-            const eventCards = document.querySelectorAll('#all-events .event-card');
-            
-            eventCards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-                const show = !category || cardCategory === category;
-                card.style.display = show ? 'block' : 'none';
-            });
-        }
-
-        function sortEvents() {
-            const sortBy = document.getElementById('sort-filter').value;
-            const container = document.getElementById('all-events');
-            const cards = Array.from(container.children);
-            
-            cards.sort((a, b) => {
-                const idA = parseInt(a.getAttribute('data-id'));
-                const idB = parseInt(b.getAttribute('data-id'));
-                const eventA = allEvents.find(e => e.id === idA);
-                const eventB = allEvents.find(e => e.id === idB);
-                
-                switch(sortBy) {
-                    case 'date':
-                        return new Date(eventA.date) - new Date(eventB.date);
-                    case 'popularity':
-                        return eventB.registered - eventA.registered;
-                    case 'fee':
-                        return eventA.fee - eventB.fee;
-                    default:
-                        return 0;
-                }
-            });
-            
-            cards.forEach(card => container.appendChild(card));
-        }
-
-        // Utility functions
-        function updateDashboardStats() {
-            document.getElementById('registered-count').textContent = registeredEvents.length;
-            document.getElementById('saved-count').textContent = savedEvents.length;
-            
-            // Count upcoming events
-            const upcoming = allEvents.filter(event => 
-                registeredEvents.includes(event.id) && new Date(event.date) > new Date()
-            ).length;
-            document.getElementById('upcoming-count').textContent = upcoming;
-        }
-
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 16px 24px;
-                background: ${type === 'success' ? 'var(--success)' : type === 'info' ? 'var(--info)' : 'var(--warning)'};
-                color: white;
-                border-radius: 8px;
-                box-shadow: var(--card-shadow);
-                z-index: 10000;
-                animation: slideIn 0.3s ease-out;
-                font-weight: 600;
-            `;
-            notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease-in';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
-
-        function clearAllSaved() {
-            if (confirm('Are you sure you want to clear all saved events?')) {
-                savedEvents = [];
-                loadSavedEvents();
-                updateDashboardStats();
-                showNotification('All saved events cleared', 'info');
-            }
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            loadFeaturedEvents();
-            updateDashboardStats();
-            
-            // Add CSS animations
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
         });
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
+        // Bookmark functionality
+        document.querySelectorAll('.event-bookmark').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('bookmarked');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('bookmarked')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
                 }
             });
-        }
+        });
+
+        // Search functionality
+        document.getElementById('eventSearch')?.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const eventCards = document.querySelectorAll('.event-card');
+
+            eventCards.forEach(card => {
+                const title = card.querySelector('.event-title').textContent.toLowerCase();
+                const description = card.querySelector('.event-description').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if(confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        });
     </script>
 </body>
 </html>

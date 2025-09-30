@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventHub - Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Admin Dashboard - Event Management Platform</title>
     <link rel="stylesheet" href="dashboard-admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
@@ -16,363 +15,586 @@
                 <span class="logo-text">EventHub</span>
             </div>
         </div>
+
         <div class="admin-info">
             <div class="admin-badge">
-                <i class="fas fa-user-shield"></i>
+                <i class="fas fa-shield-alt"></i>
                 Admin
             </div>
         </div>
+
         <div class="sidebar-menu">
-            <div class="menu-item active">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
+            <div class="menu-item active" data-section="overview">
+                <i class="fas fa-chart-pie"></i>
+                <span>Overview</span>
             </div>
-            <div class="menu-item">
-                <i class="fas fa-calendar-check"></i>
-                <span>Event Approvals</span>
-                <span class="notification-badge">8</span>
-            </div>
-            <div class="menu-item">
+            <div class="menu-item" data-section="institutes">
                 <i class="fas fa-university"></i>
                 <span>Institute Management</span>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" data-section="students">
                 <i class="fas fa-user-graduate"></i>
                 <span>Student Management</span>
             </div>
-            <div class="menu-item">
-                <i class="fas fa-calendar"></i>
+            <div class="menu-item" data-section="events">
+                <i class="fas fa-calendar-check"></i>
                 <span>All Events</span>
             </div>
-            <div class="menu-item">
-                <i class="fas fa-chart-line"></i>
-                <span>System Analytics</span>
-            </div>
-            <div class="menu-item">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>Reports & Issues</span>
-                <span class="notification-badge">3</span>
-            </div>
-            <div class="menu-item">
-                <i class="fas fa-users-cog"></i>
-                <span>User Roles</span>
-            </div>
-            <div class="menu-item">
-                <i class="fas fa-database"></i>
-                <span>System Backup</span>
-            </div>
-            <div class="menu-item">
-                <i class="fas fa-bell"></i>
-                <span>Notifications</span>
-            </div>
-            <div class="menu-item">
-                <i class="fas fa-cogs"></i>
-                <span>System Settings</span>
+            <div class="menu-item" data-section="feedbacks">
+                <i class="fas fa-comments"></i>
+                <span>Feedbacks</span>
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Top Bar -->
         <div class="top-bar">
             <div class="page-title">
-                <h1><i class="fas fa-user-shield"></i> Admin Dashboard</h1>
+                <h1 id="page-title"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
             </div>
             <div class="user-profile">
-                <div class="name">Admin</div>
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin">
-                <button class="logout-btn" onclick="window.location.href='index.html'">
-                    <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--primary);"></i>
+                <span class="name">Admin User</span>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="quick-actions">
-            <button class="action-button">
-                <i class="fas fa-plus"></i> Create System Announcement
-            </button>
-            <button class="action-button success">
-                <i class="fas fa-check-circle"></i> Approve Pending Events
-            </button>
-            <button class="action-button warning">
-                <i class="fas fa-university"></i> Manage Institutes
-            </button>
-            <button class="action-button danger">
-                <i class="fas fa-database"></i> System Backup
-            </button>
+        <!-- Overview Section -->
+        <div id="overview-section" class="content-section active">
+            <!-- Dashboard Cards (Stats Only) -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Total Users</div>
+                        <div class="card-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="card-value">12,450</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Total Events</div>
+                        <div class="card-icon events">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div class="card-value">1,248</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Total Students</div>
+                        <div class="card-icon students">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                    </div>
+                    <div class="card-value">11,365</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Institutes</div>
+                        <div class="card-icon institutes">
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </div>
+                    <div class="card-value">85</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Dashboard Cards -->
-        <div class="dashboard-cards">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Total Platform Events</div>
-                    <div class="card-icon events">
-                        <i class="fas fa-calendar"></i>
-                    </div>
-                </div>
-                <div class="card-value">1,248</div>
-                <div class="card-footer">+45 this month</div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Registered Institutes</div>
-                    <div class="card-icon institutes">
+        <!-- Institute Management Section -->
+        <div id="institutes-section" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">
                         <i class="fas fa-university"></i>
+                        Institute Management
+                    </h2>
+                    <div class="section-actions">
+                        <input type="text" placeholder="Search institutes..." class="search-input">
                     </div>
                 </div>
-                <div class="card-value">85</div>
-                <div class="card-footer">+8 new this month</div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Institute Name</th>
+                                <th>Type</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Established</th>
+                                <th>Contact Person</th>
+                                <th>Designation</th>
+                                <th>Website</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MIT Academy of Engineering</td>
+                                <td>Engineering</td>
+                                <td>admin@mitacademy.edu</td>
+                                <td>+91-9876543210</td>
+                                <td>Pune</td>
+                                <td>Maharashtra</td>
+                                <td>1999</td>
+                                <td>Dr. Rajesh Kumar</td>
+                                <td>Director</td>
+                                <td>www.mitacademy.edu</td>
+                                <td>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn reject" title="Block">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>College of Engineering Pune</td>
+                                <td>Engineering</td>
+                                <td>info@coep.org.in</td>
+                                <td>+91-9876543211</td>
+                                <td>Pune</td>
+                                <td>Maharashtra</td>
+                                <td>1854</td>
+                                <td>Prof. Anil Sahasrabudhe</td>
+                                <td>Principal</td>
+                                <td>www.coep.org.in</td>
+                                <td>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn reject" title="Block">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Symbiosis Institute of Technology</td>
+                                <td>Technical</td>
+                                <td>contact@symbiosis.ac.in</td>
+                                <td>+91-9876543212</td>
+                                <td>Pune</td>
+                                <td>Maharashtra</td>
+                                <td>2008</td>
+                                <td>Dr. Ketan Kotecha</td>
+                                <td>Dean</td>
+                                <td>www.sitpune.edu.in</td>
+                                <td>
+                                    <button class="action-btn approve" title="Approve">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="action-btn reject" title="Reject">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Pending Approvals</div>
-                    <div class="card-icon pending">
-                        <i class="fas fa-clock"></i>
+        </div>
+
+        <!-- Student Management Section -->
+        <div id="students-section" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-graduate"></i>
+                        Student Management
+                    </h2>
+                    <div class="section-actions">
+                        <input type="text" placeholder="Search students..." class="search-input">
                     </div>
                 </div>
-                <div class="card-value">23</div>
-                <div class="card-footer">Require urgent action</div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Student ID</th>
+                                <th>Major</th>
+                                <th>University</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>rahulsharma123</td>
+                                <td>Rahul Sharma</td>
+                                <td>rahul.sharma@email.com</td>
+                                <td>+91-9876543210</td>
+                                <td>STU2025001</td>
+                                <td>Computer Science</td>
+                                <td>MIT Academy of Engineering</td>
+                                <td>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>priyapatel456</td>
+                                <td>Priya Patel</td>
+                                <td>priya.patel@email.com</td>
+                                <td>+91-9876543211</td>
+                                <td>STU2025002</td>
+                                <td>Information Technology</td>
+                                <td>COEP Pune</td>
+                                <td>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>amitkumar789</td>
+                                <td>Amit Kumar</td>
+                                <td>amit.kumar@email.com</td>
+                                <td>+91-9876543212</td>
+                                <td>STU2025003</td>
+                                <td>Mechanical Engineering</td>
+                                <td>VIT Pune</td>
+                                <td>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Total Users</div>
-                    <div class="card-icon users">
-                        <i class="fas fa-users"></i>
+        </div>
+
+        <!-- Events Section -->
+        <div id="events-section" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-calendar-check"></i>
+                        All Events
+                    </h2>
+                    <div class="section-actions">
+                        <input type="text" placeholder="Search events..." class="search-input">
                     </div>
                 </div>
-                <div class="card-value">12,450</div>
-                <div class="card-footer">+320 this week</div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Institute</th>
+                                <th>Date</th>
+                                <th>Participants</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AI/ML Summit 2025</td>
+                                <td>MIT Academy</td>
+                                <td>Dec 15, 2025</td>
+                                <td>500</td>
+                                <td>Technical</td>
+                                <td><span class="status approved">Approved</span></td>
+                                <td>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn reject" title="Cancel">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Startup Pitch Competition</td>
+                                <td>COEP Pune</td>
+                                <td>Nov 28, 2025</td>
+                                <td>200</td>
+                                <td>Business</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>
+                                    <button class="action-btn approve" title="Approve">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="action-btn reject" title="Reject">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Blockchain Workshop</td>
+                                <td>VIT Pune</td>
+                                <td>Nov 25, 2025</td>
+                                <td>150</td>
+                                <td>Technical</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>
+                                    <button class="action-btn approve" title="Approve">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="action-btn reject" title="Reject">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button class="action-btn view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- System Statistics -->
-        <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-chart-bar"></i> System Performance</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">99.8%</div>
-                    <div class="stat-label">System Uptime</div>
+        <!-- Feedbacks Section -->
+        <div id="feedbacks-section" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-comments"></i>
+                        Feedbacks & Reviews
+                    </h2>
+                    <div class="section-actions">
+                        <input type="text" placeholder="Search feedbacks..." class="search-input">
+                        <select class="filter-select">
+                            <option value="all">All User Types</option>
+                            <option value="student">Students</option>
+                            <option value="institute">Institutes</option>
+                        </select>
+                        <select class="filter-select">
+                            <option value="all">All Ratings</option>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">2.3s</div>
-                    <div class="stat-label">Avg Response Time</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1.2TB</div>
-                    <div class="stat-label">Data Storage Used</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">15,420</div>
-                    <div class="stat-label">Daily Active Users</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pending Approvals -->
-        <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Pending Event Approvals</h2>
-            <div class="data-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Event Name</th>
-                            <th>Institute</th>
-                            <th>Submitted Date</th>
-                            <th>Expected Participants</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>AI/ML Summit 2025</strong></td>
-                            <td>MIT Academy</td>
-                            <td>Dec 1, 2025</td>
-                            <td>500</td>
-                            <td><span class="status pending">Pending</span></td>
-                            <td>
-                                <button class="action-btn view">View</button>
-                                <button class="action-btn approve">Approve</button>
-                                <button class="action-btn reject">Reject</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Startup Pitch Competition</strong></td>
-                            <td>COEP Pune</td>
-                            <td>Nov 28, 2025</td>
-                            <td>200</td>
-                            <td><span class="status pending">Pending</span></td>
-                            <td>
-                                <button class="action-btn view">View</button>
-                                <button class="action-btn approve">Approve</button>
-                                <button class="action-btn reject">Reject</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Blockchain Workshop</strong></td>
-                            <td>VIT Pune</td>
-                            <td>Nov 25, 2025</td>
-                            <td>150</td>
-                            <td><span class="status pending">Pending</span></td>
-                            <td>
-                                <button class="action-btn view">View</button>
-                                <button class="action-btn approve">Approve</button>
-                                <button class="action-btn reject">Reject</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Institute Management -->
-        <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-university"></i> Recent Institute Activities</h2>
-            <div class="data-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Institute Name</th>
-                            <th>Total Events</th>
-                            <th>Active Users</th>
-                            <th>Last Activity</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>MIT Academy of Engineering</strong></td>
-                            <td>45</td>
-                            <td>1,250</td>
-                            <td>2 hours ago</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <button class="action-btn view">View</button>
-                                <button class="action-btn edit">Manage</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>COEP Pune</strong></td>
-                            <td>38</td>
-                            <td>980</td>
-                            <td>5 hours ago</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <button class="action-btn view">View</button>
-                                <button class="action-btn edit">Manage</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>VIT Pune</strong></td>
-                            <td>32</td>
-                            <td>850</td>
-                            <td>1 day ago</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <button class="action-btn view">View</button>
-                                <button class="action-btn edit">Manage</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Recent System Activity -->
-        <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-history"></i> Recent System Activity</h2>
-            <div class="activity-item">
-                <div class="activity-icon system">
-                    <i class="fas fa-server"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-title">System backup completed successfully</div>
-                    <div class="activity-time">10 minutes ago</div>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-icon approval">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-title">5 events approved for MIT Academy</div>
-                    <div class="activity-time">1 hour ago</div>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-icon user">
-                    <i class="fas fa-university"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-title">New institute registration: Symbiosis Institute</div>
-                    <div class="activity-time">3 hours ago</div>
-                </div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-icon system">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-title">System maintenance scheduled for tonight</div>
-                    <div class="activity-time">6 hours ago</div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User Type</th>
+                                <th>Rating</th>
+                                <th>Benefits</th>
+                                <th>Future Use</th>
+                                <th>Suggestions</th>
+                                <th>Submitted At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="user-type student">Student</span></td>
+                                <td>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="rating-text">5</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="benefit-tag">Event Discovery</span>
+                                    <span class="benefit-tag">Networking</span>
+                                </td>
+                                <td><span class="future-use yes">Yes</span></td>
+                                <td class="comment-cell">Platform is very useful for finding events...</td>
+                                <td>Sep 20, 2025</td>
+                                <td>
+                                    <button class="action-btn view" title="View Full Feedback">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn delete" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="user-type institute">Institute</span></td>
+                                <td>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="rating-text">4</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="benefit-tag">Campus Engagement</span>
+                                </td>
+                                <td><span class="future-use yes">Yes</span></td>
+                                <td class="comment-cell">Good platform for organizing events...</td>
+                                <td>Sep 18, 2025</td>
+                                <td>
+                                    <button class="action-btn view" title="View Full Feedback">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn delete" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="user-type student">Student</span></td>
+                                <td>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="rating-text">3</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="benefit-tag">Skill Development</span>
+                                </td>
+                                <td><span class="future-use no">No</span></td>
+                                <td class="comment-cell">Average experience, needs improvement...</td>
+                                <td>Sep 15, 2025</td>
+                                <td>
+                                    <button class="action-btn view" title="View Full Feedback">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn delete" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Menu interactivity
+        // Menu functionality
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', function() {
-                document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                // Remove active class from all menu items and sections
+                document.querySelectorAll('.menu-item').forEach(menu => menu.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked menu item
                 this.classList.add('active');
+
+                // Show corresponding section
+                const sectionId = this.getAttribute('data-section') + '-section';
+                document.getElementById(sectionId).classList.add('active');
+
+                // Update page title
+                const titles = {
+                    'overview': '<i class="fas fa-tachometer-alt"></i> Admin Dashboard',
+                    'institutes': '<i class="fas fa-university"></i> Institute Management',
+                    'students': '<i class="fas fa-user-graduate"></i> Student Management',
+                    'events': '<i class="fas fa-calendar-check"></i> All Events',
+                    'feedbacks': '<i class="fas fa-comments"></i> Feedbacks & Reviews'
+                };
+
+                const section = this.getAttribute('data-section');
+                document.getElementById('page-title').innerHTML = titles[section];
             });
         });
 
-        // Action button handlers
-        document.querySelectorAll('.action-button').forEach(button => {
-            button.addEventListener('click', function() {
-                alert(`${this.textContent.trim()} functionality would be implemented here`);
-            });
-        });
+        // Action button functionality
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const action = this.className.includes('approve') ? 'approve' :
+                             this.className.includes('reject') ? 'reject' :
+                             this.className.includes('delete') ? 'delete' :
+                             this.className.includes('edit') ? 'edit' : 'view';
 
-        // Table action button handlers
-        document.querySelectorAll('.action-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const action = this.textContent.trim();
-                const row = this.closest('tr');
-                const eventName = row.querySelector('td:first-child').textContent.trim();
-                
-                if (action === 'Approve') {
-                    if (confirm(`Approve event: ${eventName}?`)) {
-                        alert(`${eventName} has been approved!`);
-                        // Here you would make an API call to approve the event
+                console.log(`Action: ${action} clicked`);
+
+                if (action === 'delete' || action === 'reject') {
+                    if (confirm(`Are you sure you want to ${action} this item?`)) {
+                        // Add your action logic here
+                        console.log(`${action} confirmed`);
                     }
-                } else if (action === 'Reject') {
-                    if (confirm(`Reject event: ${eventName}?`)) {
-                        alert(`${eventName} has been rejected!`);
-                        // Here you would make an API call to reject the event
-                    }
-                } else {
-                    alert(`${action} functionality for ${eventName} would be implemented here`);
                 }
             });
         });
 
-        // Simulate real-time updates
-        setInterval(() => {
-            // Update notification badges randomly
-            const badges = document.querySelectorAll('.notification-badge');
-            badges.forEach(badge => {
-                if (Math.random() > 0.8) {
-                    badge.textContent = Math.floor(Math.random() * 10) + 1;
-                }
+        // Search functionality
+        document.querySelectorAll('.search-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const table = this.closest('.section-container').querySelector('tbody');
+                const rows = table.querySelectorAll('tr');
+
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
             });
-        }, 30000); // Update every 30 seconds
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if(confirm('Are you sure you want to logout?')) {
+                // Previous code (console.log only)
+                console.log('Logging out...');
+                // Updated code (redirect to index.html)
+                window.location.href = 'index.html';
+
+            }
+        });
     </script>
 </body>
 </html>
