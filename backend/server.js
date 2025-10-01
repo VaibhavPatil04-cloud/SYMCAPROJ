@@ -40,10 +40,12 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eventhub'
 // IMPORT ROUTES
 const authRoutes = require('./routes/auth');
 const feedbackRoutes = require('./routes/feedback');
+const adminRoutes = require('./routes/admin');
 
 // USE ROUTES - MAKE SURE THESE ARE BEFORE ANY OTHER ROUTES
 app.use('/api/auth', authRoutes);
 app.use('/api/feedback', feedbackRoutes);  // Make sure this comes before the 404 handler
+app.use('/api/admin', adminRoutes);  // Add this line
 
 // Test if routes are working
 app.get('/api/debug-routes', (req, res) => {
