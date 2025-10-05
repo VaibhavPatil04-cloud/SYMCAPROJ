@@ -425,85 +425,99 @@
     </div>
  </div>
 </div>
-<!-- Add script reference before closing body tag -->
+
 <script src="../public/js/dashboard-admin.js"></script>
-
-
-    
-
-    <script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Menu functionality
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // Remove active class from all menu items and sections
-                document.querySelectorAll('.menu-item').forEach(menu => menu.classList.remove('active'));
-                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+        const menuItems = document.querySelectorAll('.menu-item');
+        if (menuItems) {
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all menu items and sections
+                    document.querySelectorAll('.menu-item').forEach(menu => menu.classList.remove('active'));
+                    document.querySelectorAll('.content-section').forEach(section => {
+                        if (section) section.classList.remove('active');
+                    });
 
-                // Add active class to clicked menu item
-                this.classList.add('active');
+                    // Add active class to clicked menu item
+                    this.classList.add('active');
 
-                // Show corresponding section
-                const sectionId = this.getAttribute('data-section') + '-section';
-                document.getElementById(sectionId).classList.add('active');
-
-                // Update page title
-                const titles = {
-                    'overview': '<i class="fas fa-tachometer-alt"></i> Admin Dashboard',
-                    'institutes': '<i class="fas fa-university"></i> Institute Management',
-                    'students': '<i class="fas fa-user-graduate"></i> Student Management',
-                    'events': '<i class="fas fa-calendar-check"></i> All Events',
-                    'feedbacks': '<i class="fas fa-comments"></i> Feedbacks & Reviews'
-                };
-
-                const section = this.getAttribute('data-section');
-                document.getElementById('page-title').innerHTML = titles[section];
-            });
-        });
-
-        // Action button functionality
-        document.querySelectorAll('.action-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const action = this.className.includes('approve') ? 'approve' :
-                             this.className.includes('reject') ? 'reject' :
-                             this.className.includes('delete') ? 'delete' :
-                             this.className.includes('edit') ? 'edit' : 'view';
-
-                console.log(`Action: ${action} clicked`);
-
-                if (action === 'delete' || action === 'reject') {
-                    if (confirm(`Are you sure you want to ${action} this item?`)) {
-                        // Add your action logic here
-                        console.log(`${action} confirmed`);
+                    // Show corresponding section
+                    const sectionId = this.getAttribute('data-section') + '-section';
+                    const targetSection = document.getElementById(sectionId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
                     }
-                }
-            });
-        });
 
-        // Search functionality
-        document.querySelectorAll('.search-input').forEach(input => {
-            input.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const table = this.closest('.section-container').querySelector('tbody');
-                const rows = table.querySelectorAll('tr');
+                    // Update page title
+                    const titles = {
+                        'overview': '<i class="fas fa-tachometer-alt"></i> Admin Dashboard',
+                        'institutes': '<i class="fas fa-university"></i> Institute Management',
+                        'students': '<i class="fas fa-user-graduate"></i> Student Management',
+                        'events': '<i class="fas fa-calendar-check"></i> All Events',
+                        'feedbacks': '<i class="fas fa-comments"></i> Feedbacks & Reviews'
+                    };
 
-                rows.forEach(row => {
-                    const text = row.textContent.toLowerCase();
-                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                    const section = this.getAttribute('data-section');
+                    const pageTitle = document.getElementById('page-title');
+                    if (pageTitle && titles[section]) {
+                        pageTitle.innerHTML = titles[section];
+                    }
                 });
             });
-        });
+        }
+
+        // Action button functionality
+        const actionButtons = document.querySelectorAll('.action-btn');
+        if (actionButtons) {
+            actionButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const action = this.className.includes('approve') ? 'approve' :
+                                 this.className.includes('reject') ? 'reject' :
+                                 this.className.includes('delete') ? 'delete' :
+                                 this.className.includes('edit') ? 'edit' : 'view';
+
+                    console.log(`Action: ${action} clicked`);
+
+                    if (action === 'delete' || action === 'reject') {
+                        if (confirm(`Are you sure you want to ${action} this item?`)) {
+                            console.log(`${action} confirmed`);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Search functionality
+        const searchInputs = document.querySelectorAll('.search-input');
+        if (searchInputs) {
+            searchInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const table = this.closest('.section-container')?.querySelector('tbody');
+                    if (table) {
+                        const rows = table.querySelectorAll('tr');
+                        rows.forEach(row => {
+                            const text = row.textContent.toLowerCase();
+                            row.style.display = text.includes(searchTerm) ? '' : 'none';
+                        });
+                    }
+                });
+            });
+        }
 
         // Logout functionality
-        document.querySelector('.logout-btn').addEventListener('click', function() {
-            if(confirm('Are you sure you want to logout?')) {
-                // Previous code (console.log only)
-                console.log('Logging out...');
-                // Updated code (redirect to index.html)
-                window.location.href = 'index.html';
-
-            }
-        });
-    </script>
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function() {
+                if(confirm('Are you sure you want to logout?')) {
+                    window.location.href = 'index.html';
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

@@ -2,7 +2,18 @@ const express = require('express');
 const router = express.Router();
 const Feedback = require('../models/feedback');
 
-// SIMPLE FEEDBACK ROUTE THAT WILL DEFINITELY WORK
+// Get all feedbacks
+router.get('/all', async (req, res) => {
+    try {
+        const feedbacks = await Feedback.find().sort({ submittedAt: -1 });
+        res.json(feedbacks);
+    } catch (error) {
+        console.error('Error fetching feedbacks:', error);
+        res.status(500).json({ message: 'Error fetching feedbacks' });
+    }
+});
+
+// Submit new feedback
 router.post('/submit', async (req, res) => {
     try {
         console.log('📝 Received feedback:', req.body);
@@ -29,6 +40,17 @@ router.post('/submit', async (req, res) => {
             success: false,
             message: error.message || 'Error submitting feedback'
         });
+    }
+});
+
+// Delete feedback
+router.delete('/:id', async (req, res) => {
+    try {
+        await Feedback.findByIdAndDelete(req.params.id);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting feedback:', error);
+        res.status(500).json({ message: 'Error deleting feedback' });
     }
 });
 

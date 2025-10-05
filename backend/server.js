@@ -1,57 +1,53 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
+// Import routes
+const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin');
+const feedbackRoutes = require('./routes/feedback');
+
+// Initialize express
 const app = express();
 
-// CORS - Allow everything
-app.use(cors());
-app.options('*', cors());
-
-// Update CORS configuration
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
+// Load environment variables
+dotenv.config();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// DEBUG ALL REQUESTS
-app.use((req, res, next) => {
-    console.log(`🔍 ${req.method} ${req.originalUrl}`);
-    if (req.body && Object.keys(req.body).length > 0) {
-        console.log('📦 Body:', req.body);
-    }
-    next();
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eventplatform')
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/feedback', feedbackRoutes);
+
+// Basic route for testing
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to EventHub API' });
 });
 
-// Database connection (optional for now)
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eventhub', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('✅ MongoDB Connected'))
-.catch(err => console.log('❌ MongoDB Error:', err.message));
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!' });
+});
 
-// IMPORT ROUTES
-const authRoutes = require('./routes/auth');
-const feedbackRoutes = require('./routes/feedback');
-const adminRoutes = require('./routes/admin');
-
-// USE ROUTES - MAKE SURE THESE ARE BEFORE ANY OTHER ROUTES
-app.use('/api/auth', authRoutes);
-app.use('/api/feedback', feedbackRoutes);  // Make sure this comes before the 404 handler
-app.use('/api/admin', adminRoutes);  // Add this line
-
-// Test if routes are working
+// Test route
 app.get('/api/debug-routes', (req, res) => {
     res.json({
         message: 'Debug routes',
         availableRoutes: [
+            'GET  /api/admin/test',
+            'GET  /api/admin/feedback',
+            'DELETE /api/admin/feedback/:id',
             'GET  /api/feedback/test',
             'POST /api/feedback/submit',
             'POST /api/auth/register/student',
@@ -60,29 +56,17 @@ app.get('/api/debug-routes', (req, res) => {
     });
 });
 
-// Basic route
-app.get('/', (req, res) => {
-    res.json({ 
-        message: 'EventHub API is running!',
-        feedbackRoute: 'POST /api/feedback/submit'
-    });
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
-// 404 handler
+// 404 handler - MUST be at the end
 app.use('*', (req, res) => {
     console.log('❌ 404 - Route not found:', req.method, req.originalUrl);
     res.status(404).json({
         success: false,
-        message: `Route not found: ${req.method} ${req.originalUrl}`,
-        availableMethods: ['GET', 'POST']
+        message: `Route not found: ${req.method} ${req.originalUrl}`
     });
-});
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`📍 Local: http://localhost:${PORT}`);
-    console.log(`📝 Feedback route: POST http://localhost:${PORT}/api/feedback/submit`);
-    console.log(`🔧 Debug routes: GET http://localhost:${PORT}/api/debug-routes`);
 });

@@ -19,31 +19,20 @@ function formatDate(dateString) {
 
 // Function to fetch feedbacks
 async function fetchFeedbacks() {
-    const token = getAuthToken();
-    if (!token) {
-        console.error('No auth token found');
-        return;
-    }
-
     try {
-        const response = await fetch('/api/feedbacks', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
+        const response = await fetch('http://localhost:5000/api/feedback/all');
         if (!response.ok) {
-            throw new Error('Failed to fetch feedbacks');
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-
-        const feedbacks = await response.json();
-        displayFeedbacks(feedbacks);
+        const data = await response.json();
+        console.log('Fetched feedback data:', data); // Debug log
+        displayFeedbacks(data);
     } catch (error) {
         console.error('Error fetching feedbacks:', error);
         document.getElementById('feedbackTableBody').innerHTML = `
             <tr>
-                <td colspan="7" style="text-align: center; color: red; padding: 20px;">
-                    Failed to load feedbacks. Please try again later.
+                <td colspan="7" class="error-message">
+                    <i class="fas fa-exclamation-circle"></i> Failed to load feedbacks. Please try again.
                 </td>
             </tr>
         `;
@@ -53,7 +42,7 @@ async function fetchFeedbacks() {
 // Function to display feedbacks in table
 function displayFeedbacks(feedbacks) {
     const tableBody = document.getElementById('feedbackTableBody');
-    if (!feedbacks.length) {
+    if (!feedbacks || feedbacks.length === 0) {
         tableBody.innerHTML = `
             <tr>
                 <td colspan="7" style="text-align: center; padding: 20px;">
@@ -66,22 +55,94 @@ function displayFeedbacks(feedbacks) {
 
     tableBody.innerHTML = feedbacks.map(feedback => `
         <tr>
-            <td>${feedback.userType}</td>
-            <td>${feedback.rating}/5</td>
-            <td>${feedback.benefits}</td>
-            <td>${feedback.futureUse ? 'Yes' : 'No'}</td>
-            <td>${feedback.suggestions || 'N/A'}</td>
-            <td>${formatDate(feedback.submittedAt)}</td>
             <td>
-                <button class="action-btn view" title="View Details" onclick="viewFeedbackDetails('${feedback.id}')">
+                <span class="user-type ${feedback.userType.toLowerCase()}">
+                    ${feedback.userType}
+                </span>
+            </td>
+            <td>
+                <div class="rating">
+                    ${generateStars(feedback.rating)}
+                    <span class="rating-text">${feedback.rating}/5</span>
+                </div>
+            </td>
+            <td>
+                ${feedback.benefits ? feedback.benefits.map(benefit => 
+                    `<span class="benefit-tag">${benefit}</span>`
+                ).join(' ') : 'No benefits listed'}
+            </td>
+            <td>
+                <span class="future-use ${feedback.futureUse === 'yes' ? 'yes' : 'no'}">
+                    ${feedback.futureUse}
+                </span>
+            </td>
+            <td class="suggestions-cell" title="${feedback.suggestions || ''}">
+                ${feedback.suggestions || 'No suggestions provided'}
+            </td>
+            <td>${new Date(feedback.submittedAt).toLocaleDateString()}</td>
+            <td>
+                <button class="btn-action btn-view" onclick="viewFeedbackDetails('${feedback._id}')">
                     <i class="fas fa-eye"></i>
                 </button>
-                <button class="action-btn delete" title="Delete" onclick="deleteFeedback('${feedback.id}')">
+                <button class="btn-action btn-delete" onclick="deleteFeedback('${feedback._id}')">
                     <i class="fas fa-trash"></i>
                 </button>
             </td>
         </tr>
     `).join('');
+}
+
+function generateStars(rating) {
+    let stars = '';
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    
+    for (let i = 0; i < fullStars; i++) {
+        stars += '<i class="fas fa-star"></i>';
+    }
+    
+    if (hasHalfStar) {
+        stars += '<i class="fas fa-star-half-alt"></i>';
+    }
+    
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+        stars += '<i class="far fa-star"></i>';
+    }
+    
+    return stars;
+}
+
+// Function to view feedback details (modal or detailed view)
+function viewFeedbackDetails(id) {
+    const feedback = document.querySelector(`tr[data-id="${id}"]`);
+    if (feedback) {
+        // Implement detailed view functionality here
+        console.log('Viewing feedback:', id);
+    }
+}
+
+// Function to delete feedback
+async function deleteFeedback(id) {
+    if (!confirm('Are you sure you want to delete this feedback?')) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:5000/api/feedback/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete feedback');
+        }
+
+        alert('Feedback deleted successfully');
+        fetchFeedbacks(); // Refresh the table
+    } catch (error) {
+        console.error('Error deleting feedback:', error);
+        alert('Failed to delete feedback. Please try again.');
+    }
 }
 
 // Initialize feedback loading
@@ -92,75 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchFeedbacks();
     }
 });
-/* The following block was removed because it was an orphaned HTML fragment causing a syntax error. */
-
-// Function to update feedback count
-function updateFeedbackCount(count) {
-  const countElement = document.querySelector('#feedbackCount');
-  if (countElement) {
-    countElement.textContent = count;
-  }
-}
-
-// Function to show error messages
-function showError(message) {
-  const tableBody = document.querySelector('#feedbackTableBody');
-  if (tableBody) {
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="7" style="text-align: center; padding: 20px; color: #e74c3c;">
-          ${message}
-        </td>
-      </tr>
-    `;
-  }
-}
-
-// Function to view feedback details (modal or detailed view)
-function viewFeedbackDetails(feedbackId) {
-  // Create modal to show full feedback details
-  const modal = document.createElement('div');
-  modal.className = 'modal-overlay';
-  modal.innerHTML = `
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Feedback Details</h3>
-        <button class="modal-close" onclick="closeModal()">&times;</button>
-      </div>
-      <div class="modal-body" id="feedbackDetailsBody">
-        Loading...
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-  
-  // Fetch specific feedback details
-  fetchSingleFeedback(feedbackId);
-}
-
-// Function to fetch single feedback
-async function fetchSingleFeedback(feedbackId) {
-  try {
-    const token = getAuthToken();
-    const response = await fetch(`${API_BASE_URL}/admin/feedback`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    const result = await response.json();
-    if (response.ok && result.success) {
-      const feedback = result.data.find(f => f._id === feedbackId);
-      if (feedback) {
-        displayFeedbackDetails(feedback);
-      }
-    }
-  } catch (error) {
-    console.error('Error fetching feedback details:', error);
-  }
-}
+// Removed stray code block causing syntax error
 
 // Function to display feedback details in modal
 function displayFeedbackDetails(feedback) {

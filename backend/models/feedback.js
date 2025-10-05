@@ -7,18 +7,15 @@ const feedbackSchema = new mongoose.Schema({
         enum: ['student', 'institute']
     },
     benefits: [{
-        type: String,
-        enum: ['event_discovery', 'networking', 'campus_engagement', 'skill_development']
+        type: String
     }],
     futureUse: {
-        type: String,
-        required: true,
-        enum: ['yes', 'no']
+        type: Boolean,
+        required: true
     },
     suggestions: {
         type: String,
-        trim: true,
-        maxlength: 1000
+        trim: true
     },
     rating: {
         type: Number,
@@ -29,21 +26,7 @@ const feedbackSchema = new mongoose.Schema({
     submittedAt: {
         type: Date,
         default: Date.now
-    },
-    userAgent: {
-        type: String,
-        trim: true
-    },
-    ipAddress: {
-        type: String,
-        trim: true
     }
-}, {
-    timestamps: true
 });
-
-// Index for better query performance
-feedbackSchema.index({ submittedAt: -1 });
-feedbackSchema.index({ userType: 1 });
 
 module.exports = mongoose.model('Feedback', feedbackSchema);

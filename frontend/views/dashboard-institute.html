@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub - Institute Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <link rel="stylesheet" href="dashboard-institute.css">
+    <link rel="stylesheet" href="dashboard-institute.css">
 </head>
 <body>
     <!-- Sidebar -->
@@ -20,384 +20,449 @@
             <div class="institute-avatar">
                 <i class="fas fa-university"></i>
             </div>
-            <div class="institute-name">MIT Academy of Engineering</div>
+            <div class="institute-name">MET</div>
             <div class="institute-id">Institute ID: MIT001</div>
         </div>
         <div class="sidebar-menu">
             <div class="menu-section">
-                <div class="menu-section-title">Main</div>
-                <a href="#" class="menu-item active" data-tab="dashboard">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                <div class="menu-section-title">Main Menu</div>
+
+                <a href="javascript:void(0)" class="menu-item active" onclick="showTab('overview')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Overview</span>
                 </a>
-                <a href="#" class="menu-item" data-tab="create-event">
-                    <i class="fas fa-calendar-plus"></i>
+
+                <a href="javascript:void(0)" class="menu-item" onclick="showTab('event-management')">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Event Management</span>
+                </a>
+
+                <a href="javascript:void(0)" class="menu-item" onclick="showTab('create-event')">
+                    <i class="fas fa-plus-circle"></i>
                     <span>Create Event</span>
                 </a>
-                <a href="#" class="menu-item" data-tab="events">
-                    <i class="fas fa-calendar"></i>
-                    <span>My Events</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="registrations">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Student Registrations</span>
-                    <span class="notification-badge">12</span>
-                </a>
-            </div>
-            <div class="menu-section">
-                <div class="menu-section-title">Management</div>
-                <a href="#" class="menu-item" data-tab="approvals">
-                    <i class="fas fa-clipboard-check"></i>
-                    <span>Event Approvals</span>
-                    <span class="notification-badge">3</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="analytics">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Analytics</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="finance">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <span>Finance</span>
-                </a>
-            </div>
-            <div class="menu-section">
-                <div class="menu-section-title">Profile</div>
-                <a href="#" class="menu-item" data-tab="profile">
-                    <i class="fas fa-university"></i>
-                    <span>Institute Profile</span>
-                </a>
-                <a href="#" class="menu-item" data-tab="settings">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
+
+                <a href="javascript:void(0)" class="menu-item" onclick="showTab('profile')">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
         <!-- Top Bar -->
+        <div class="main-content">
         <div class="top-bar">
             <div class="page-title">
-                <button class="mobile-menu-btn" onclick="toggleSidebar()" style="display: none;">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 id="page-title">Institute Dashboard</h1>
-                <p id="page-subtitle">Manage your institute events and registrations</p>
+                <h1><i class="fas fa-tachometer-alt"></i> Institute Dashboard</h1>
+                <p>Manage your institute events and registrations</p>
             </div>
-            <div class="top-actions">
-                <button class="notification-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
-                </button>
-                <div class="user-profile" onclick="showProfile()">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Institute User">
-                    <div>
-                        <div style="font-weight: 600;">Institute Admin</div>
-                        <div style="font-size: 0.75rem; opacity: 0.7;">MIT Academy</div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <button class="logout-btn" onclick="window.location.href='index.html'">
-                    <i class="fas fa-sign-out-alt"></i>
+            <div class="user-profile">
+                <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--primary);"></i>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
         </div>
 
-        <div class="content-area">
-            <!-- Dashboard Tab -->
-            <div id="dashboard-content" class="tab-content">
-                <!-- Profile Section -->
-                <div class="profile-section" style="background: white; border-radius: 12px; padding: 25px; box-shadow: var(--card-shadow); margin-bottom: 30px; display: flex; align-items: center; gap: 24px; position: relative; overflow: hidden;">
-                    <div class="profile-section::before" style="content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--primary), var(--secondary));"></div>
-                    <div class="institute-avatar-large" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="institute-info-large" style="flex: 1;">
-                        <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 4px;">Welcome, MIT Academy of Engineering!</h2>
-                        <p style="color: var(--text-light); font-size: 1rem;">Institute ID: MIT001 • Established: 1999</p>
-                        <p style="margin-top: 8px; color: var(--primary); font-weight: 600;">
-                            <i class="fas fa-map-marker-alt"></i> Nashik, Maharashtra
-                        </p>
-                    </div>
-                    <div class="profile-actions" style="display: flex; gap: 12px;">
-                        <button class="btn btn-outline" onclick="editProfile()">
-                            <i class="fas fa-edit"></i>
-                            Edit Profile
-                        </button>
+        <!-- Tab Content -->
+
+        <!-- Overview Tab -->
+        <div id="overview-tab" class="tab-content active">
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Total Events Created</div>
+                            <div class="card-value">24</div>
+                        </div>
+                        <div class="card-icon events">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Active Events</div>
+                            <div class="card-value">8</div>
+                        </div>
+                        <div class="card-icon students">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Total Students</div>
+                            <div class="card-value">1,250</div>
+                        </div>
+                        <div class="card-icon pending">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Total Institutes</div>
+                            <div class="card-value">38</div>
+                        </div>
+                        <div class="card-icon revenue">
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <!-- Quick Actions -->
-                <div class="quick-actions">
-                    <button class="action-button" onclick="switchTab('create-event')">
+        <!-- Event Management Tab -->
+        <div id="event-management-tab" class="tab-content">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-calendar-check"></i> All Institute Events</h2>
+                    <button class="btn btn-primary" onclick="showTab('create-event')">
                         <i class="fas fa-plus"></i> Create New Event
                     </button>
-                    <button class="action-button" onclick="switchTab('registrations')">
-                        <i class="fas fa-user-graduate"></i> View Registrations
-                    </button>
-                    <button class="action-button" onclick="switchTab('analytics')">
-                        <i class="fas fa-chart-line"></i> View Analytics
-                    </button>
-                    <button class="action-button" onclick="exportData()">
-                        <i class="fas fa-file-export"></i> Export Data
-                    </button>
                 </div>
-
-                <!-- Dashboard Cards -->
-                <div class="dashboard-cards">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Total Events Created</div>
-                            <div class="card-icon events">
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="card-value" id="total-events">24</div>
-                        <div class="card-footer">
-                            <i class="fas fa-arrow-up" style="color: var(--success);"></i>
-                            <span style="color: var(--success);">+5 this month</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Total Registrations</div>
-                            <div class="card-icon students">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                        <div class="card-value" id="total-registrations">1,250</div>
-                        <div class="card-footer">
-                            <i class="fas fa-user-plus" style="color: var(--info);"></i>
-                            <span style="color: var(--info);">+120 this week</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Pending Approvals</div>
-                            <div class="card-icon pending">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                        </div>
-                        <div class="card-value" id="pending-approvals">8</div>
-                        <div class="card-footer">
-                            <i class="fas fa-exclamation-circle" style="color: var(--warning);"></i>
-                            <span style="color: var(--warning);">Require action</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Monthly Revenue</div>
-                            <div class="card-icon revenue">
-                                <i class="fas fa-rupee-sign"></i>
-                            </div>
-                        </div>
-                        <div class="card-value">₹85,000</div>
-                        <div class="card-footer">
-                            <i class="fas fa-chart-line" style="color: var(--accent);"></i>
-                            <span style="color: var(--accent);">+₹12K from last month</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Events -->
-                <div class="section-header">
-                    <h2 class="section-title">Recent Events</h2>
-                    <button class="btn btn-primary" onclick="switchTab('events')">
-                        <i class="fas fa-eye"></i>
-                        View All Events
-                    </button>
-                </div>
-
-                <div class="section-container">
-                    <div class="events-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Event Name</th>
-                                    <th>Date</th>
-                                    <th>Registrations</th>
-                                    <th>Capacity</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Nashik HackFest 2025</strong></td>
-                                    <td>15-17 Dec 2025</td>
-                                    <td>120/150</td>
-                                    <td>150</td>
-                                    <td><span class="status active">Active</span></td>
-                                    <td>
-                                        <button class="action-btn view">View</button>
-                                        <button class="action-btn edit">Edit</button>
-                                        <button class="action-btn delete">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>AI & ML Workshop</strong></td>
-                                    <td>5 Dec 2025</td>
-                                    <td>85/100</td>
-                                    <td>100</td>
-                                    <td><span class="status pending">Pending</span></td>
-                                    <td>
-                                        <button class="action-btn view">View</button>
-                                        <button class="action-btn edit">Edit</button>
-                                        <button class="action-btn delete">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Coding Challenge 2025</strong></td>
-                                    <td>20 Nov 2025</td>
-                                    <td>65/80</td>
-                                    <td>80</td>
-                                    <td><span class="status ended">Ended</span></td>
-                                    <td>
-                                        <button class="action-btn view">View</button>
-                                        <button class="action-btn edit">Edit</button>
-                                        <button class="action-btn delete">Delete</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="section-header">
-                    <h2 class="section-title">Recent Activity</h2>
-                </div>
-
-                <div class="section-container">
-                    <div class="activity-item">
-                        <div class="activity-icon registration">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New student registered for AI Workshop</div>
-                            <div class="activity-time">2 minutes ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon event">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Nashik HackFest 2025 approved by admin</div>
-                            <div class="activity-time">1 hour ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon approval">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Tech Seminar pending approval</div>
-                            <div class="activity-time">3 hours ago</div>
-                        </div>
-                    </div>
+                <div class="events-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Students Applied</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="showEventDetails('Nashik HackFest 2025', 120, 'Active')" style="cursor: pointer;">
+                                <td>Nashik HackFest 2025</td>
+                                <td>15-17 Dec 2025</td>
+                                <td>120 students</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>
+                                    <button class="action-btn view" onclick="event.stopPropagation(); showEventDetails('Nashik HackFest 2025', 120, 'Active')">View Details</button>
+                                    <button class="action-btn edit" onclick="event.stopPropagation(); stopRegistrations('Nashik HackFest 2025')">Stop Registrations</button>
+                                </td>
+                            </tr>
+                            <tr onclick="showEventDetails('AI & ML Workshop', 85, 'Pending')" style="cursor: pointer;">
+                                <td>AI & ML Workshop</td>
+                                <td>5 Dec 2025</td>
+                                <td>85 students</td>
+                                <td><span class="status ended">Ended</span></td>
+                                <td>
+                                    <button class="action-btn view" onclick="event.stopPropagation(); showEventDetails('AI & ML Workshop', 85, 'Pending')">View Details</button>
+                                    <button class="action-btn edit" onclick="event.stopPropagation(); stopRegistrations('AI & ML Workshop')">Stop Registrations</button>
+                                </td>
+                            </tr>
+                            <tr onclick="showEventDetails('Coding Challenge 2025', 65, 'Ended')" style="cursor: pointer;">
+                                <td>Coding Challenge 2025</td>
+                                <td>20 Nov 2025</td>
+                                <td>65 students</td>
+                                <td><span class="status ended">Ended</span></td>
+                                <td>
+                                    <button class="action-btn view" onclick="event.stopPropagation(); showEventDetails('Coding Challenge 2025', 65, 'Ended')">View Details</button>
+                                </td>
+                            </tr>
+                            <tr onclick="showEventDetails('Web Development Bootcamp', 95, 'Active')" style="cursor: pointer;">
+                                <td>Web Development Bootcamp</td>
+                                <td>10 Jan 2026</td>
+                                <td>95 students</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>
+                                    <button class="action-btn view" onclick="event.stopPropagation(); showEventDetails('Web Development Bootcamp', 95, 'Active')">View Details</button>
+                                    <button class="action-btn edit" onclick="event.stopPropagation(); stopRegistrations('Web Development Bootcamp')">Stop Registrations</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-            <!-- Other tabs would be implemented similarly -->
-            <div id="create-event-content" class="tab-content" style="display: none;">
-                <!-- Create Event content would go here -->
+        <!-- Create Event Tab -->
+        <div id="create-event-tab" class="tab-content">
+            <div class="section-container">
+                <h2 class="section-title"><i class="fas fa-plus-circle"></i> Create New Event</h2>
+                <form class="create-event-form" onsubmit="handleCreateEvent(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="eventName">Event Name <span class="required">*</span></label>
+                            <input type="text" id="eventName" name="eventName" required placeholder="Enter event name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventType">Event Type <span class="required">*</span></label>
+                            <select id="eventType" name="eventType" required>
+                                <option value="">Select event type</option>
+                                <option value="hackathon">Hackathon</option>
+                                <option value="coding-competition">Coding Competition</option>
+                                <option value="project-expo">Project Expo</option>
+                                <option value="workshop">Workshop</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description">Description <span class="required">*</span></label>
+                            <textarea id="description" name="description" rows="4" required placeholder="Enter event description"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="createDate">Event Date <span class="required">*</span></label>
+                            <input type="date" id="createDate" name="createDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deadline">Registration Deadline <span class="required">*</span></label>
+                            <input type="date" id="deadline" name="deadline" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="venue">Venue <span class="required">*</span></label>
+                            <input type="text" id="venue" name="venue" required placeholder="Enter venue">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timings">Event Timings <span class="required">*</span></label>
+                            <input type="time" id="timings" name="timings" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fees">Fees (if any)</label>
+                            <input type="number" id="fees" name="fees" placeholder="Enter fees (optional)" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="capacity">Maximum Capacity <span class="required">*</span></label>
+                            <input type="number" id="capacity" name="capacity" required placeholder="Enter max participants" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Create Event
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Reset
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div id="events-content" class="tab-content" style="display: none;">
-                <!-- My Events content would go here -->
-            </div>
-            <div id="registrations-content" class="tab-content" style="display: none;">
-                <!-- Student Registrations content would go here -->
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profile-tab" class="tab-content">
+            <div class="section-container">
+                <h2 class="section-title"><i class="fas fa-user-circle"></i> Profile Details</h2>
+                <div class="profile-info">
+                    <div class="profile-section">
+                        <h3>Basic Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Username:</label>
+                                <span>met9438</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Email:</label>
+                                <span>met@gmail.com</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Role:</label>
+                                <span>Institute</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Phone:</label>
+                                <span>08390380535</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h3>Institute Details</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Institute Name:</label>
+                                <span>MET</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Institute Type:</label>
+                                <span>Management</span>
+                            </div>
+                            <div class="info-item full-width">
+                                <label>Address:</label>
+                                <span>Plot No.4 Tapovan Road<br>Near Tapovan Hall</span>
+                            </div>
+                            <div class="info-item">
+                                <label>City:</label>
+                                <span>Nashik</span>
+                            </div>
+                            <div class="info-item">
+                                <label>State:</label>
+                                <span>Maharashtra</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Pincode:</label>
+                                <span>422003</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Country:</label>
+                                <span>India</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Established Year:</label>
+                                <span>2000</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Affiliated To:</label>
+                                <span>SPPU</span>
+                            </div>
+                            <div class="info-item full-width">
+                                <label>Website:</label>
+                                <span><a href="http://127.0.0.1:5500/event-platform/views/register-institute.html" target="_blank">Visit Website</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h3>Editable Information</h3>
+                        <form class="profile-edit-form" onsubmit="handleProfileUpdate(event)">
+                            <div class="form-group">
+                                <label for="contactPerson">Contact Person Name <span class="required">*</span></label>
+                                <input type="text" id="contactPerson" name="contactPerson" value="Vaibhav Patil" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="designation">Designation <span class="required">*</span></label>
+                                <input type="text" id="designation" name="designation" value="HOD" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Update Password</label>
+                                <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password (leave blank to keep current)">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Update Profile
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Navigation functionality
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const tab = this.getAttribute('data-tab');
-                if (tab) {
-                    switchTab(tab);
-                    
-                    document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                }
-            });
-        });
+        // Tab switching function
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
 
-        function switchTab(tab) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.style.display = 'none';
-            });
-            
-            // Show selected tab content
-            const tabContent = document.getElementById(tab + '-content');
-            if (tabContent) {
-                tabContent.style.display = 'block';
+            // Remove active class from all menu items
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+
+            // Show selected tab
+            const selectedTab = document.getElementById(tabName + '-tab');
+            if (selectedTab) {
+                selectedTab.classList.add('active');
             }
-            
-            // Update page title
-            const titles = {
-                dashboard: 'Institute Dashboard',
-                'create-event': 'Create Event',
-                events: 'My Events',
-                registrations: 'Student Registrations',
-                approvals: 'Event Approvals',
-                analytics: 'Analytics',
-                finance: 'Finance',
-                profile: 'Institute Profile',
-                settings: 'Settings'
-            };
-            
-            const subtitles = {
-                dashboard: 'Manage your institute events and registrations',
-                'create-event': 'Create a new event for students',
-                events: 'Manage your created events',
-                registrations: 'View and manage student registrations',
-                approvals: 'Approve or reject event submissions',
-                analytics: 'View event analytics and insights',
-                finance: 'Manage finances and revenue',
-                profile: 'Update institute profile information',
-                settings: 'Configure institute settings'
-            };
-            
-            document.getElementById('page-title').textContent = titles[tab] || 'Institute Dashboard';
-            document.getElementById('page-subtitle').textContent = subtitles[tab] || 'Manage your institute events and registrations';
+
+            // Add active class to clicked menu item
+            const clickedItem = event.target.closest('.menu-item');
+            if (clickedItem) {
+                clickedItem.classList.add('active');
+            }
         }
 
-        // Utility functions
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
+        // Event details function - shows students applied, status, and actions
+        function showEventDetails(eventName, studentsApplied, status) {
+            const detailsHTML = `
+Event: ${eventName}
+
+Students Applied: ${studentsApplied}
+Event Status: ${status}
+
+Actions Available:
+- View student list
+- Download registrations
+- Send notifications
+- ${status === 'Active' ? 'Stop registrations' : 'View analytics'}
+            `;
+            alert(detailsHTML);
+
+            // In real implementation, this would open a modal or navigate to details page
+            console.log('Event Details:', { eventName, studentsApplied, status });
         }
 
-        function showProfile() {
-            alert('Profile menu would open here');
+        // Stop registrations function
+        function stopRegistrations(eventName) {
+            if (confirm(`Are you sure you want to stop registrations for "${eventName}"?`)) {
+                alert(`Registrations stopped for "${eventName}". No new students can register now.`);
+                // Add your API call here to update the event status
+                console.log('Stopping registrations for:', eventName);
+            }
         }
 
-        function editProfile() {
-            alert('Edit profile functionality would open here');
+        // Create event form submission
+        function handleCreateEvent(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const eventData = Object.fromEntries(formData);
+
+            console.log('Creating event:', eventData);
+
+            const confirmMessage = `
+Event Details:
+- Name: ${eventData.eventName}
+- Type: ${eventData.eventType}
+- Date: ${eventData.createDate}
+- Venue: ${eventData.venue}
+- Capacity: ${eventData.capacity}
+
+Create this event?
+            `;
+
+            if (confirm(confirmMessage)) {
+                alert('Event created successfully! It will appear in Event Management tab.');
+                e.target.reset();
+                // Add your API call here to create the event
+            }
         }
 
-        function exportData() {
-            alert('Export data functionality would be implemented here');
-        }
+        // Profile update form submission
+        function handleProfileUpdate(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const profileData = Object.fromEntries(formData);
 
-        // Add click handlers for action buttons
-        document.querySelectorAll('.action-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const action = this.textContent.trim().toLowerCase();
-                alert(`${action} functionality would be implemented here`);
+            // Validate password confirmation
+            if (profileData.newPassword && profileData.newPassword !== profileData.confirmPassword) {
+                alert('Passwords do not match! Please re-enter.');
+                return;
+            }
+
+            console.log('Updating profile:', {
+                contactPerson: profileData.contactPerson,
+                designation: profileData.designation,
+                passwordChanged: !!profileData.newPassword
             });
-        });
 
-        // Initialize dashboard
-        document.addEventListener('DOMContentLoaded', function() {
-            // Any initialization code would go here
-        });
+            alert('Profile updated successfully!\n\nUpdated fields:\n- Contact Person: ' + profileData.contactPerson + '\n- Designation: ' + profileData.designation + (profileData.newPassword ? '\n- Password changed' : ''));
+
+            // Clear password fields after update
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+
+            // Add your API call here to update profile
+        }
     </script>
 </body>
 </html>

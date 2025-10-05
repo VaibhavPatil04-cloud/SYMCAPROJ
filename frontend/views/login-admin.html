@@ -67,21 +67,24 @@
 
     <script>
         document.querySelector('.login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-            // Dummy admin credentials
-            const dummyUsername = 'admin';
-            const dummyPassword = 'admin123';
+    const dummyUsername = 'admin';
+    const dummyPassword = 'admin123';
 
-            if (username === dummyUsername && password === dummyPassword) {
-                // Redirect to admin dashboard
-                window.location.href = 'dashboard-admin.html';
-            } else {
-                alert('Invalid credentials. Please try again.');
-            }
-        });
+    if (username === dummyUsername && password === dummyPassword) {
+        // Generate a dummy token for the session
+        const dummyToken = 'dummy-admin-token-' + Date.now();
+        localStorage.setItem('authToken', dummyToken);
+        
+        // Redirect to admin dashboard
+        window.location.href = 'dashboard-admin.html';
+    } else {
+        alert('Invalid credentials. Please try again.');
+    }
+});
     </script>
 
     <!-- Footer -->
