@@ -360,8 +360,8 @@ function showTab(tabName) {
 // Logout
 function handleLogout() {
     if (confirm('Are you sure you want to logout?')) {
-        localStorage.removeItem('token');
-        window.location.href = 'login-institute.html';
+        localStorage.clear(); // Clear all localStorage items
+        window.location.href = './login-institute.html'; // Redirect to login page
     }
 }
 
@@ -400,16 +400,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadOverviewStats();
     await loadEvents();
 
-    // Attach logout handler
-    const logoutBtn = document.querySelector('.logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', handleLogout);
-    }
-
     // Attach form handlers
     const createEventForm = document.querySelector('.create-event-form');
     if (createEventForm) {
-        createEventForm.addEventListener('submit', handleCreateEvent);
+        createEventForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleCreateEvent(e);
+        });
+    }
+
+    // Add logout handler
+    const logoutBtn = document.querySelector('.logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => handleLogout());
     }
 
     const profileForm = document.querySelector('.profile-edit-form');

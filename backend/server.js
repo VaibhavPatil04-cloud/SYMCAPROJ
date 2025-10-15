@@ -28,8 +28,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eventplat
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/feedback', feedbackRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/feedback', feedbackRoutes);
 
 // Basic route for testing
 app.get('/', (req, res) => {
