@@ -411,6 +411,83 @@ router.post('/login-institute', [
     }
 });
 
+// Admin Login Route
+router.post('/login-admin', [
+    body('username')
+        .notEmpty().withMessage('Username is required'),
+    
+    body('password')
+        .notEmpty().withMessage('Password is required')
+
+], async (req, res) => {
+    try {
+        console.log('Admin login attempt:', req.body.username);
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                success: false,
+                message: 'Validation failed',
+                errors: errors.array()
+            });
+        }
+
+        const { username, password } = req.body;
+
+        // Find admin user by username
+        const user = await User.findOne({
+            username: username.toLowerCase(),
+            role: 'admin'
+        });
+
+        if (!user) {
+            console.log('Admin not found:', username);
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid credentials - admin not found'
+            });
+        }
+
+        // Check password
+        const isPasswordValid = await user.comparePassword(password);
+        if (!isPasswordValid) {
+            console.log('Invalid password for admin:', username);
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid credentials - wrong password'
+            });
+        }
+
+        // Generate token with role included
+        const token = jwt.sign(
+            { userId: user._id, role: user.role }, 
+            process.env.JWT_SECRET || 'your-secret-key',
+            { expiresIn: '30d' }
+        );
+        
+        console.log('Login successful for admin:', user.username);
+
+        res.json({
+            success: true,
+            message: 'Admin login successful',
+            token,
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                role: user.role
+            }
+        });
+
+    } catch (error) {
+        console.error('Admin login error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Server error during admin login: ' + error.message
+        });
+    }
+});
+
 // Get current user (works for both student and institute)
 router.get('/me', auth, async (req, res) => {
     try {

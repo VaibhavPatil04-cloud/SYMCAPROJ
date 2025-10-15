@@ -66,23 +66,41 @@
     </div>
 
     <script>
-        document.querySelector('.login-form').addEventListener('submit', function(event) {
+        document.querySelector('.login-form').addEventListener('submit', async function(event) {
     event.preventDefault();
+    
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const dummyUsername = 'admin';
-    const dummyPassword = 'admin123';
+    try {
+        // Make API call to backend
+        const response = await fetch('http://localhost:5000/api/auth/login-admin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
 
-    if (username === dummyUsername && password === dummyPassword) {
-        // Generate a dummy token for the session
-        const dummyToken = 'dummy-admin-token-' + Date.now();
-        localStorage.setItem('authToken', dummyToken);
-        
-        // Redirect to admin dashboard
-        window.location.href = 'dashboard-admin.html';
-    } else {
-        alert('Invalid credentials. Please try again.');
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            // Store the token
+            localStorage.setItem('authToken', data.token);
+            
+            // Store user info
+            localStorage.setItem('adminUser', JSON.stringify(data.user));
+            
+            console.log('Admin login successful');
+            
+            // Redirect to admin dashboard
+            window.location.href = 'dashboard-admin.html';
+        } else {
+            alert(data.message || 'Invalid credentials. Please try again.');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Network error. Please check if the server is running.');
     }
 });
     </script>
@@ -130,26 +148,4 @@
         </div>
     </footer>
 </body>
-<script>
-    document.querySelector('.login-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        // Dummy admin credentials
-        const dummyUsername = 'admin';
-        const dummyPassword = 'admin123';
-
-        // Temporary credentials for testing and local use
-        const tempEmail = 'test@example.com';
-        const tempPassword = 'testpass';
-
-        if ((username === dummyUsername && password === dummyPassword) || (username === tempEmail && password === tempPassword)) {
-            // Redirect to admin dashboard
-            window.location.href = 'dashboard-admin.html';
-        } else {
-            alert('Invalid credentials. Please try again.');
-        }
-    });
-</script>
 </html>

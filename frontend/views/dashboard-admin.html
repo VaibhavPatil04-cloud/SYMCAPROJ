@@ -395,129 +395,131 @@
         </div>
 
         <!-- Feedbacks Section -->
-        <!-- Find this section and update the table -->
-<div class="section-container">
-    <div class="section-header">
-        <h2 class="section-title"><i class="fas fa-comments"></i> Feedbacks & Reviews</h2>
-    </div>
-    <div class="data-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>User Type</th>
-                    <th>Rating</th>
-                    <th>Benefits</th>
-                    <th>Future Use</th>
-                    <th>Suggestions</th>
-                    <th>Submitted At</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="feedbackTableBody">
-                <!-- Dynamic content will be inserted here -->
-                <tr>
-                    <td colspan="7" style="text-align: center; padding: 20px;">
-                        Loading feedbacks...
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
- </div>
-</div>
+        <div id="feedbacks-section" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-comments"></i> Feedbacks & Reviews</h2>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User Type</th>
+                                <th>Rating</th>
+                                <th>Benefits</th>
+                                <th>Future Use</th>
+                                <th>Suggestions</th>
+                                <th>Submitted At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedbackTableBody">
+                            <!-- Dynamic content will be inserted here -->
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 20px;">
+                                    Loading feedbacks...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-<script src="../public/js/dashboard-admin.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Menu functionality
-        const menuItems = document.querySelectorAll('.menu-item');
-        if (menuItems) {
-            menuItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // Remove active class from all menu items and sections
-                    document.querySelectorAll('.menu-item').forEach(menu => menu.classList.remove('active'));
-                    document.querySelectorAll('.content-section').forEach(section => {
-                        if (section) section.classList.remove('active');
-                    });
+    </div><!-- Main content div ends -->
 
-                    // Add active class to clicked menu item
-                    this.classList.add('active');
-
-                    // Show corresponding section
-                    const sectionId = this.getAttribute('data-section') + '-section';
-                    const targetSection = document.getElementById(sectionId);
-                    if (targetSection) {
-                        targetSection.classList.add('active');
-                    }
-
-                    // Update page title
-                    const titles = {
-                        'overview': '<i class="fas fa-tachometer-alt"></i> Admin Dashboard',
-                        'institutes': '<i class="fas fa-university"></i> Institute Management',
-                        'students': '<i class="fas fa-user-graduate"></i> Student Management',
-                        'events': '<i class="fas fa-calendar-check"></i> All Events',
-                        'feedbacks': '<i class="fas fa-comments"></i> Feedbacks & Reviews'
-                    };
-
-                    const section = this.getAttribute('data-section');
-                    const pageTitle = document.getElementById('page-title');
-                    if (pageTitle && titles[section]) {
-                        pageTitle.innerHTML = titles[section];
-                    }
-                });
-            });
-        }
-
-        // Action button functionality
-        const actionButtons = document.querySelectorAll('.action-btn');
-        if (actionButtons) {
-            actionButtons.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const action = this.className.includes('approve') ? 'approve' :
-                                 this.className.includes('reject') ? 'reject' :
-                                 this.className.includes('delete') ? 'delete' :
-                                 this.className.includes('edit') ? 'edit' : 'view';
-
-                    console.log(`Action: ${action} clicked`);
-
-                    if (action === 'delete' || action === 'reject') {
-                        if (confirm(`Are you sure you want to ${action} this item?`)) {
-                            console.log(`${action} confirmed`);
-                        }
-                    }
-                });
-            });
-        }
-
-        // Search functionality
-        const searchInputs = document.querySelectorAll('.search-input');
-        if (searchInputs) {
-            searchInputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    const table = this.closest('.section-container')?.querySelector('tbody');
-                    if (table) {
-                        const rows = table.querySelectorAll('tr');
-                        rows.forEach(row => {
-                            const text = row.textContent.toLowerCase();
-                            row.style.display = text.includes(searchTerm) ? '' : 'none';
+    <script src="../public/js/dashboard-admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu functionality
+            const menuItems = document.querySelectorAll('.menu-item');
+            if (menuItems) {
+                menuItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        // Remove active class from all menu items and sections
+                        document.querySelectorAll('.menu-item').forEach(menu => menu.classList.remove('active'));
+                        document.querySelectorAll('.content-section').forEach(section => {
+                            if (section) section.classList.remove('active');
                         });
+
+                        // Add active class to clicked menu item
+                        this.classList.add('active');
+
+                        // Show corresponding section
+                        const sectionId = this.getAttribute('data-section') + '-section';
+                        const targetSection = document.getElementById(sectionId);
+                        if (targetSection) {
+                            targetSection.classList.add('active');
+                        }
+
+                        // Update page title
+                        const titles = {
+                            'overview': '<i class="fas fa-tachometer-alt"></i> Admin Dashboard',
+                            'institutes': '<i class="fas fa-university"></i> Institute Management',
+                            'students': '<i class="fas fa-user-graduate"></i> Student Management',
+                            'events': '<i class="fas fa-calendar-check"></i> All Events',
+                            'feedbacks': '<i class="fas fa-comments"></i> Feedbacks & Reviews'
+                        };
+
+                        const section = this.getAttribute('data-section');
+                        const pageTitle = document.getElementById('page-title');
+                        if (pageTitle && titles[section]) {
+                            pageTitle.innerHTML = titles[section];
+                        }
+                    });
+                });
+            }
+
+            // Action button functionality
+            const actionButtons = document.querySelectorAll('.action-btn');
+            if (actionButtons) {
+                actionButtons.forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const action = this.className.includes('approve') ? 'approve' :
+                                     this.className.includes('reject') ? 'reject' :
+                                     this.className.includes('delete') ? 'delete' :
+                                     this.className.includes('edit') ? 'edit' : 'view';
+
+                        console.log(`Action: ${action} clicked`);
+
+                        if (action === 'delete' || action === 'reject') {
+                            if (confirm(`Are you sure you want to ${action} this item?`)) {
+                                console.log(`${action} confirmed`);
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Search functionality
+            const searchInputs = document.querySelectorAll('.search-input');
+            if (searchInputs) {
+                searchInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        const searchTerm = this.value.toLowerCase();
+                        const table = this.closest('.section-container')?.querySelector('tbody');
+                        if (table) {
+                            const rows = table.querySelectorAll('tr');
+                            rows.forEach(row => {
+                                const text = row.textContent.toLowerCase();
+                                row.style.display = text.includes(searchTerm) ? '' : 'none';
+                            });
+                        }
+                    });
+                });
+            }
+
+            // Logout functionality
+            const logoutBtn = document.querySelector('.logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    if(confirm('Are you sure you want to logout?')) {
+                        window.location.href = 'index.html';
                     }
                 });
-            });
-        }
-
-        // Logout functionality
-        const logoutBtn = document.querySelector('.logout-btn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', function() {
-                if(confirm('Are you sure you want to logout?')) {
-                    window.location.href = 'index.html';
-                }
-            });
-        }
-    });
-</script>
+            }
+        });
+    </script>
 </body>
 </html>
